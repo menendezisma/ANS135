@@ -16,6 +16,7 @@ def tabular(va,vp,it):
 
 try:
     import math
+    import sys
     import numpy as np
     from tabulate import tabulate
     from matplotlib import pyplot as plt
@@ -38,22 +39,47 @@ while menu > 0 and menu < 6:
     if menu == 1:
         opcion = int(
             input("Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)"
-                  "\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\nOtro numero para salir "))
+                  "\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\n12.Limpiar consola\nOtro numero para salir "))
 
-        while opcion > 0 and opcion < 12:
+        while opcion > 0 and opcion < 13:
 
             if opcion == 1:
-                # opcion 1 Ln(1+x)
-
-                print(1)
+                # opcion 1 Ln(e+x)
+                def le(x):
+                    e=np.exp(1)
+                    return np.log(e+x)
+                x=np.linspace(-3,3)
+                plt.grid()
+                plt.xlabel("Eje x")
+                plt.ylabel("Ln(e+x)")
+                plt.title("F(x)=Ln(e+x)")
+                plt.plot(x,le(x))
+                plt.show()
 
             elif opcion == 2:
                 # opcion 2 e^(x^2)
-                print(2)
+                def ex2(x):
+                    return np.exp(x**2)
+                x=np.linspace(-1,1)
+                plt.grid()
+                plt.xlabel("Eje x")
+                plt.ylabel("e*x^2")
+                plt.title("F(x)=e*x^2")
+                plt.plot(x,ex2(x))
+                plt.show()
 
             elif opcion == 3:
                 # opcion 3 sen(x)
-                print(3)
+                def sen(x):
+                    return np.sin(x)
+
+                x=np.linspace(0,10)
+                plt.grid()
+                plt.title("F(x)=sen(x)")
+                plt.ylabel("Sen(x)")
+                plt.xlabel("Eje x")
+                plt.plot(x,sen(x))
+                plt.show()
 
             elif opcion == 4:
                 # opcion 4 cos(x)
@@ -90,14 +116,14 @@ while menu > 0 and menu < 6:
             elif opcion == 5:
                 # opcion 5 e^x
 
-                def e(x):
+                def ex(x):
                     return np.exp(x)
                 x=np.linspace(-3,2)
                 plt.grid()
                 plt.xlabel("Eje x")
                 plt.ylabel("e^x")
                 plt.title("F(x)=e^x")
-                plt.plot(x,e(x))
+                plt.plot(x,ex(x))
                 plt.show()
 
                 x = float(input("Cual es el valor de x?\n"))
@@ -121,15 +147,42 @@ while menu > 0 and menu < 6:
 
             elif opcion == 6:
                 # opcion 6 sh(x)
-                print(6)
+                def sh(x):
+                    return np.sinh(x)
+                x = np.linspace(-3, 3)
+                plt.grid()
+                plt.xlabel("Eje x")
+                plt.ylabel("sinh(x)")
+                plt.title("F(x)=sinh(x)")
+                plt.plot(x,sh(x))
+                plt.show()
+
 
             elif opcion == 7:
                 # opcion 7 ch(x)
-                print(7)
+                def ch(x):
+                    return np.cosh(x)
+                x = np.linspace(-3, 3)
+                plt.grid()
+                plt.xlabel("Eje x")
+                plt.ylabel("cosh(x)")
+                plt.title("F(x)=cosh(x)")
+                plt.plot(x, ch(x))
+                plt.show()
+
 
             elif opcion == 8:
                 # opcion 8 arcsen(x)
-                print(8)
+                def arcsen(x):
+                    return np.arcsin(x)
+                x = np.linspace(-1, 1)
+                plt.grid()
+                plt.xlabel("Eje x")
+                plt.ylabel("arcsin(x)")
+                plt.title("F(x)=arcsin(x)")
+                plt.plot(x, arcsen(x))
+                plt.show()
+
 
             elif opcion == 9:
                 # opcion 9 ln(1+x)
@@ -235,10 +288,14 @@ while menu > 0 and menu < 6:
                 oncemore = iter([True, False])
                 data = []
                 tabular(va, vp, it)
+
+            elif opcion==12:
+                sys.stdout.flush()
+
             else:
                 seguir = 1
 
             opcion = int(input("Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)"
-                      "\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\nOtro numero para salir "))
+                      "\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\n12.Limpiar consola\nOtro numero para salir "))
 
     menu = int(input("Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
