@@ -182,6 +182,43 @@ while menu > 0 and menu < 6:
                 plt.title("F(x)=sinh(x)")
                 plt.plot(x, sh(x))
                 plt.show()
+                
+                cifras = int(input("¿Cuantas cifras significativas desea? "))
+                tolerancia = 0.5 * (10 ** (2 - cifras))
+
+                x = float(input("¿Cual es el valor de x?\n"))
+
+
+                # se define la serie de la funcion
+                def g(x, n):
+                    return (1 / (math.factorial((2 * n)+1))) * (x ** ((2 * n)+1))
+
+
+                # Se encuentra Ea 
+                def Ea(vp, va):
+                    return abs((vp - va) / vp) * 100
+
+
+                # iteracion
+                n = 0
+
+                # valor presente vp
+                vp = g(x, n)
+
+                # valor anterior va
+                va = 0
+
+               oncemore = iter([True, False])
+               data = []
+
+               while Ea(vp, va) > tolerancia or next(oncemore):
+               data.append([n + 1, vp, va, Ea(vp, va)])
+               va = vp
+               # aumentamos 1 a n
+               n += 1
+               vp += g(x, n)
+
+              print(tabulate(data, headers=["It", "Valor presente", "Valor anterior", "Er"],tablefmt="orgtbl"))
 
 
             elif opcion == 7:
