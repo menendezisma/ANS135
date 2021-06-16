@@ -9,13 +9,13 @@ class Un2:
     #Definimos la funcion U2 que recibe el argumento tolerancia
     def U2(tolerancia):
         #Solicitamos al usuario que ingresa la funcion exponencial
-        fx = input("Introduce la funcion exponencial en terminos de x ")
+        fx = input("\x1b[1;33m"+"Introduce la funcion exponencial en terminos de x "+"\x1b[1;36m")
         #Validamos que en realidad se trate de una funcion exponencial
         if "**x" in fx or "exp(" in fx or "**-x" in fx:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
-            metodo = int(input(
+            metodo = int(input("\x1b[1;36m"+
                 "Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
-                "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir\n"))
+                "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir\n"+"\x1b[0;30m"))
 
             while metodo > 0 and metodo < 10:
                 #Si la opcion es 1
@@ -105,9 +105,9 @@ class Un2:
                     else:
                         print("Ingrese un intervalo valido")
 
-                metodo = int(input(
+                metodo = int(input("\x1b[1;36m"+
                     "Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
-                    "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir\n"))
+                    "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir "+"\x1b[0;30m"))
 
         #Si la funcion no es exponencial devolvemos al usuario el mensaje
         else:
