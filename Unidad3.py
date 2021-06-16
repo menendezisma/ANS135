@@ -1,5 +1,6 @@
 import time
 import sympy
+from tabulate import tabulate
 
 #Creamos la clase Un3
 class Un3:
@@ -35,17 +36,28 @@ class Un3:
                 n = int(input("\x1b[0;31m" + "Ingrese el grado del polinomio "))
                 print("\x1b[1;33m"+"Recuerde que para un polinomio de grado n, necesitamos n+1 puntos ")
                 time.sleep(2)
+                data = []
                 #Solicitamos los datos
                 for i in range(n+1):
                     x = float(input("\x1b[1;32m" + "Ingrese los valores de x "))
                     X.append(x)
                     y = float(input("\x1b[1;33m" + "Ingrese los valores de Fx "))
                     Fx.append(y)
+                    data.append([x, y])
+
+                indice=0
+                while indice<n:
+                    b0=Fx[0]
+                    b1=(Fx[indice+1]-Fx[indice])/(X[indice+1]-X[indice])
+                    print(b1)
+                    indice+=1
+
                 print("\x1b[1;34m")
                 print(X)
                 print("\x1b[1;36m",end='')
                 print(Fx)
-                print("\x1b[1;35m")
+                print("\x1b[1;30m")
+                print(tabulate(data, headers=["x", "f(x)",""], tablefmt="pretty"))
                 break
             else:
                 break
