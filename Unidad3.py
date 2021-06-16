@@ -1,4 +1,6 @@
 import time
+import sympy
+
 #Creamos la clase Un3
 class Un3:
     #Definimos la funcion U3
@@ -21,22 +23,29 @@ class Un3:
             # Opcion 4 Interpolacion de Hermite
             elif metodo == 4:
                 #Solicitamos el usuario la funcion
-                Fn = input("\x1b[1;30m" + "Ingrese la funcion en terminos de x ")
+                fn = input("\x1b[1;30m" + "Ingrese la funcion en terminos de x ")
+                dfn=sympy.diff(fn)
+                #Imprimimos la funcion y su derivada
+                print("f(x)= ", fn)
+                print("f'(x)= ", dfn)
                 #creamos dos listas vacias para guardar los datos
                 X = []
                 Fx = []
                 #Pedimos que ingrese el grado del polinomio a calcular
                 n = int(input("\x1b[0;31m" + "Ingrese el grado del polinomio "))
                 print("\x1b[1;33m"+"Recuerde que para un polinomio de grado n, necesitamos n+1 puntos ")
-                time.sleep(3)
+                time.sleep(2)
                 #Solicitamos los datos
                 for i in range(n+1):
                     x = float(input("\x1b[1;32m" + "Ingrese los valores de x "))
                     X.append(x)
                     y = float(input("\x1b[1;33m" + "Ingrese los valores de Fx "))
                     Fx.append(y)
+                print("\x1b[1;34m")
                 print(X)
+                print("\x1b[1;36m",end='')
                 print(Fx)
+                print("\x1b[1;35m")
                 break
             else:
                 break
