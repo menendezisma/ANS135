@@ -60,11 +60,9 @@ def Integracion():
                 #evaluamos los subintervalos en la funcion
                 fxi=sympy.sympify(Fx).subs(x,i)
                 #Vamos sumando los valores de la evaluacion
-                Sigma=fxi=sympy.sympify(Fx).subs(x,i)
+                sigma+=fxi
                 #Pasamos los datos a nuesta tabla
                 data.append([i,fxi])
-                #Ocupamos una variable auxiliar para ocupar los datos despues
-                sigma+=Sigma
                 #incrementamos las interaciones en h
                 i += h
             #imprimimos nuestra tabla
@@ -105,7 +103,71 @@ def Integracion():
 
         #Simpson 1/3 compuesto
         elif opcion == 4:
-            print()
+            # Solicitamos el valor de los subintervalos
+            n = int(input("Ingrese el valor de n "))
+            # definimos la variable independiente
+            x = sympy.symbols('x')
+            # Pedimos al usuario la funcion
+            Fx = input("Ingrese la funcion en terminos de x ")
+            # Solicitamos el valor inferior del intervalo
+            a = int(input("Ingrese el valor de a "))
+            # Evaluamos el intervalo inferior en la funcion
+            A = sympy.sympify(Fx).subs(x, a)
+            # Solicitamos el valor superior del intervalo
+            b = int(input("Ingrese el valor de b "))
+            # Evaluamos el intervalo superior en la funcion
+            B = sympy.sympify(Fx).subs(x, b)
+
+            # Calculamos en valor de la separacion entre cada subintervalo
+            h = (b - a) / n
+
+            # creamos una lista vacia
+            data = []
+            # Creamos las variables sigma y plus que almacenaran la sumatoria de todas las funciones evaluadas en x y en los puntos medios
+            sigm = 0
+            plus=0
+            # definimos que el incremento empiece desde el intervalo inferior
+            i = a
+            # creamos un bucle para ir evaluando cada subintervalo en la funcion
+            while i <= b:
+                # evaluamos los subintervalos en la funcion
+                fxi = sympy.sympify(Fx).subs(x, i)
+                # Vamos sumando los valores de la evaluacion
+                sigm+=fxi
+                # Pasamos los datos a nuesta tabla
+                data.append([i, fxi])
+                # incrementamos las interaciones en h
+                i += h
+
+            # imprimimos nuestra tabla
+            print(tabulate(data, headers=["Xi", "f(xi)"], showindex=True, tablefmt="pretty"))
+
+            #Creamos otra lista vacia para mostrar los datos al usuario
+            dat=[]
+            #Creamos la variable Med para calcular el punto medio del sub intervalo
+            Med = (a + h) / 2
+            #Asginamos a la variable iteracion que empiece desde Med
+            it = Med
+            while it <= b:
+                # evaluamos los el punto medio de los subintervalos en la funcion
+                fxmed = sympy.sympify(Fx).subs(x, it)
+                # Vamos sumando los valores de la evaluacion
+                plus += fxmed
+                # Pasamos los datos a nuesta tabla
+                dat.append([it, fxmed])
+                # incrementamos las interaciones en h
+                it += h
+
+            # imprimimos nuestra tabla
+            print(tabulate(dat, headers=["Xmi", "f(Xmi)"], showindex=True, tablefmt="pretty"))
+
+            # A la sumatoria de todas la evaluacion de las funciones le restamos el valor evaluado en los extremos del intervalo
+            sumat = sigm - (A + B)
+            # calculamos el valor de la regla del trapcio compuesto
+            S13C = float((b - a) * ((A + (4*plus)+(2 * sumat) + B) / (6 * n)))
+            # Devolvemos el resultado al usuario
+            print("\x1b[1;35m", "El valor aproximado de la integral por la regla del Trapecio Compuesto", S13C,
+                  "\x1b[0;30m")
 
         #Simpson 3/8 simple
         elif opcion == 5:
