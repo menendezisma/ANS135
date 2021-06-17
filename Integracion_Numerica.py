@@ -171,8 +171,51 @@ def Integracion():
 
         #Simpson 3/8 simple
         elif opcion == 5:
+            #Por definicion sabemos que n=3 para simpson 3/8 simple
+            n = 3
+            # definimos la variable independiente
+            x = sympy.symbols('x')
+            # Pedimos al usuario la funcion
+            Fx = input("Ingrese la funcion en terminos de x ")
+            # Solicitamos el valor inferior del intervalo
+            a = int(input("Ingrese el valor de a "))
+            # Evaluamos el intervalo inferior en la funcion
+            A = sympy.sympify(Fx).subs(x, a)
+            # Solicitamos el valor superior del intervalo
+            b = int(input("Ingrese el valor de b "))
+            # Evaluamos el intervalo superior en la funcion
+            B = sympy.sympify(Fx).subs(x, b)
 
-            print()
+            # Calculamos en valor de la separacion entre cada subintervalo
+            h = (b - a) / n
+
+            # creamos una lista vacia
+            data = []
+            # Creamos la variable sigma que almacenara la sumatoria de todas las funciones evaluadas en x
+            sigma = 0
+            # definimos que el incremento empiece desde el intervalo inferior
+            i = a
+            # creamos un bucle para ir evaluando cada subintervalo en la funcion
+            while i <= b:
+                # evaluamos los subintervalos en la funcion
+                fxi = sympy.sympify(Fx).subs(x, i)
+                # Vamos sumando los valores de la evaluacion
+                sigma += fxi
+                # Pasamos los datos a nuesta tabla
+                data.append([i, fxi])
+                # incrementamos las interaciones en h
+                i += h
+            # imprimimos nuestra tabla
+            print(tabulate(data, headers=["Xi", "f(xi)"], showindex=True, tablefmt="pretty"))
+
+            # A la sumatoria de todas la evaluacion de las funciones le restamos el valor evaluado en los extremos del intervalo
+            sumatoria = sigma - (A + B)
+            # calculamos el valor de la regla del trapcio compuesto
+            S38S = float((b - a) * ((A + (3 * sumatoria) + B) / 8))
+            # Devolvemos el resultado al usuario
+            print("\x1b[1;35m", "El valor aproximado de la integral por la regla del Trapecio Compuesto", S38S,
+                  "\x1b[0;30m")
+
         #Simpson 3/8 compuesto
         elif opcion == 6:
             print()
