@@ -16,7 +16,7 @@ class Un2:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
             metodo = int(input("\x1b[3;36m"+
                 "Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
-                "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir\n"+"\x1b[0;30m"))
+                "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir\n"+"\x1b[1;36m"))
 
             while metodo > 0 and metodo < 10:
 
@@ -47,7 +47,7 @@ class Un2:
                 elif metodo == 2:
                     # Biseccion
                     #Solicitamos el primer valor
-                    x = float(input("Ingrese el valor para x1 "))
+                    x = float(input("\x1b[0;30m"+"Ingrese el valor para x1 "))
                     #Almacenamos el valor x en otra variable
                     x1 = x
                     #Evaluamos nuestro valor x1 en la funcion fx
@@ -62,7 +62,7 @@ class Un2:
                     if sign(fx1) != sign(fx2):
                         print("\nEl intervalo si contiene una raiz")
                     else:
-                        print("Ingrese un intervalo valido")
+                        print("\x1b[1;31m"+"Ingrese un intervalo valido"+"\x1b[0;30m")
 
                     it = 0
                     #Encontramos el punto medio inicial
@@ -103,11 +103,55 @@ class Un2:
                         it += 1
 
                         #Imprimimos la tabla
-                    print(tabulate(data, headers=["It", "x1", "x2", "xr", "F(x1)", "F(xr)", "F(x1)*F(xr)", "Ea"],
-                                   tablefmt="github"))
+                    print(tabulate(data, headers=["It", "x1", "x2", "xr", "F(x1)", "F(xr)", "F(x1)*F(xr)", "Ea"], tablefmt="github"))
 
+                #Si la opcion es 3 punto fijo
+                elif metodo==3:
+                    oncemore = iter([True, False])
+                    data = []
 
-                # Si la opcion es 6 Secante
+                    # Obteniendo los datos
+                    x1 = float(input("\x1b[0;30m"+"¿Cual es el valor de X1?\n"))
+                    x2 = float(input("¿Cual es el valor de X2?\n"))
+
+                    if f(x1) * f(x2) <= 0:
+                        # inicializo las variables
+                        xr = 0
+                        i = 0
+                        E = 100
+                        # mientras sea mayor a tolerancia seguir iterando
+                        while (E > tolerancia):
+                            i += 1
+                            # Guardo en otras variables la funcion evaluada con esos parametros
+                            fx1 = f(x1)
+                            fx2 = f(x2)
+                            fxr = f(xr)
+                            # Resguardo mi valor para la siguiente iteración
+                            xr_anterior = xr
+                            # Calculo la aproximación
+                            xr = (x1 - ((fx1 * (x1 - x2)) / (fx1 - fx2)))
+                            # Inicializo en 0 para que en la siguiente iteracion me guarde el E en ella misma.
+                            E = 0
+                            E = (abs((xr - xr_anterior) / xr)) * 100
+                            # Imprimo los valores en la tabla creada
+                            data.append([i, x1, x2, f(x1), f(x2), xr, f(xr), f(x1) * f(x2), E])
+                            if fx1 * fx2 < 0:
+                                x2 = xr
+                                xr_anterior = x2
+                            else:
+                                x1 = xr
+                                xr_anterior = x1
+                        # Genero el encabezado de la tabla,ademas de imprimir los valores obtenidos
+                        print(tabulate(data,
+                                       headers=["Iteración", "X1", "X2", "f(X1)", "f(X2)", "Xr", "f(Xr)", "f(X1)f(Xr)",
+                                                "Ea"], tablefmt="orgtbl"))
+                        print("\nEn iteracion :  " + str(i))
+                        print("Se obtuvo como resultado de xr=  " + str(xr))
+                        print("Con un error de Ea=" + str(E) + "\n")
+                    else:
+                        print("\x1b[1;31m"+"No existe solucion en dicho intervalo"+"\x1b[0;30m")
+
+                #Si la opcion es 6 Secante
                 elif metodo==6:
                     # Error
                     def errorAbs(va, vp):
@@ -133,7 +177,7 @@ class Un2:
                     def fx(x):
                         return sin(x/2)-5*exp(-x)
 
-                    xa = int(input("Ingrese el primer valor "))
+                    xa = int(input("\x1b[0;30m"+"Ingrese el primer valor "))
                     xb = int(input("Ingrese el segundo valor "))
                     cifras = 3
                     error = 0.5 * (10 ** (2 - cifras))  # en porcentaje
@@ -213,8 +257,8 @@ class Un2:
                     print("Para que se mire toda la tabla en orden, es necesario hacer más pequeña la letra de la consola, esto es debido al gran número de variables")
 
                 metodo = int(input("\x1b[3;36m"+"Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
-                    "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir "+"\x1b[0;30m"))
+                    "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir "+"\x1b[1;36m"))
 
         #Si la funcion no es exponencial devolvemos al usuario el mensaje
         else:
-            print("Debe ingresar una funcion exponencial")
+            print("\x1b[1;31m"+"Debe ingresar una funcion exponencial"+"\x1b[3;36m")

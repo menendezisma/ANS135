@@ -32,7 +32,7 @@ print("para las funciones trogonometricas use: sin(), cos(), tan()\npara usar la
 print("------------------------------------------------------------------------"+"\x1b[1;34m")
 
 
-menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
+menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "+"\x1b[1;34m"))
 
 # La opcion ingresada tiene que estar entre 1 y 5
 while menu > 0 or menu < 6:
@@ -55,8 +55,20 @@ while menu > 0 or menu < 6:
 
     # OPCION 2
     elif menu == 2:
-        # Creamos una nueva instancia de la clase unidad 2
-        Unidad2 = Un2.U2(tolerancia)
+        try:
+            # Pedimos al usuario el numero de cifras significativas
+            cifras = int(input("Cuantas cifras significativas desea "))
+            if cifras >= 0:
+                # Calculamos el error Es
+                tolerancia = 0.5 * (10 ** (2 - cifras))
+
+                # Creamos una nueva instancia de la clase unidad 1
+                Unidad2 = Un2.U2(tolerancia)
+            else:
+                print("\x1b[1;31m" + "Ingrese un numero valido" + "\x1b[1;31m")
+
+        except:
+            print("\x1b[1;31m" + "Ingrese un numero valido" + "\x1b[1;31m")
 
     # OPCION 3
     elif menu == 3:
@@ -81,4 +93,4 @@ while menu > 0 or menu < 6:
     else:
         break
 
-    menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
+    menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "+"\x1b[1;34m"))

@@ -1,5 +1,6 @@
 #Importamos las librerias a utilizar
 import math
+#import Decimal
 import sys
 import numpy as np
 from tabulate import tabulate
@@ -73,6 +74,7 @@ class Un1:
                 va = 0
                 while ea > tol:
                     va = vf
+                    #get
                     vf = (va + (((x ** (n)) / ((n) * (e ** (n)))) * (-1) ** ((n) + 1)))
                     ea = abs((vf - va) / vf) * 100
                     data.append([n, vf, va, ea])
@@ -344,29 +346,26 @@ class Un1:
                 # Mostramos la grafica al usuario
                 plt.show()
 
-                cifras = -1
-                ea = 1000
+                cifras=-1
+                ea=1000
 
-                # Pedimos al usuario el valor de x
-                x = float(input("ingrese el valor de x, intervalo[-1,1]"))
-                while (x < -1 or x > 1):
-                    # Si el numero no esta en el intervalo dado le devuelve el mensaje
-                    print("ha ingresado un numero que no se encuentra en el intervalo")
-                    # Pedimos al usuario el valor de x
-                    x = float(input("ingrese el valor de x "))
+                x = float(input("ingrese el valor de x, intervalo ]-1,1[ "))
+                while (x <= -1 or x >= 1):
+                    print("\x1b[1;31m" +"ha ingresado un numero que no se encuentra en el intervalo "+"\x1b[0;30m")
+                    x = float(input("Ingrese el valor de x "))
 
                 aprox = x + ((1 / 2) * (((x) ** 3) / 3))
                 n = 2
 
                 while (ea > tol):
                     ant = aprox
-                    aprox = aprox + (((math.factorial(2 * n)) / (((2 ** n) * math.factorial(n)) ** 2)) * (
-                            (x ** ((2 * n) + 1)) / ((2 * n) + 1)))
+                    aprox = aprox + (((math.factorial(2 * n)) / (((2 ** n) * math.factorial(n)) ** 2)) * ((x ** ((2 * n) + 1)) / ((2 * n) + 1)))
                     ea = abs(((aprox - ant) / aprox) * 100)
                     print("iteracion ", n)
                     print("valor aproximado ", aprox)
                     print("error aproximado ", ea)
                     n = n + 1
+
                 print("el valor es: ", aprox)
                 print("el error es: ", ea)
 
@@ -399,7 +398,7 @@ class Un1:
                 if not (-1 < x < 1):
                     # Si el numero no se encuentra en el intervalo dado devuelve el mensaje
                     print("El valor de \"x\" tiene que ser mayor a -1 y menor a 1")
-                    exit()
+                    print("\x1b[1;34m")
                 else:
                     # Se define la naturaleza de la funcion
                     def g(x, it):
