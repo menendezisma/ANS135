@@ -158,24 +158,17 @@ class Un2:
                     data = []
 
                     # Obtengo función g(x) proporcionado por el usuario
-                    # fgx=(input("Por favor ingrese g(x):"))
-                    # print(fgx)
-
-                    # defino la funcion
-                    def g(x):
-                        # y=fgx
-                        y = (2 * x + 3) ** (1 / 2)
-                        return (y)
+                    gx=input("\x1b[0;30m"+"Por favor ingrese g(x):")
+                    print(gx)
 
                     # Obtengo el punto inicial
-                    x0 = float(input("\x1b[0;30m""¿Cual es el valor de X0?\n"))
+                    x0 = float(input("¿Cual es el valor de X0?\n"))
 
                     # Evaluo en el punto con la g'(x)
-                    evaluando = sp.diff((2 * x + 3) ** (1 / 2), x).subs(x, x0)
+                    evaluando = sp.diff(gx).subs(x, x0)
                     print(evaluando)
 
                     # Compruebo si existe convergencia
-
                     if (evaluando < 1):  # converge
                         i = 0
                         xr = 0
@@ -185,7 +178,7 @@ class Un2:
                             # Resguardo mi valor para la siguiente iteración
                             xr_anterior = x0
                             # Calculo la aproximacion
-                            xr = g(x0)
+                            xr = sp.sympify(gx).subs(x,x0)
                             # ahora calculamos el error
                             E = 0
                             E = abs((xr - xr_anterior) / xr) * 100
