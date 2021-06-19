@@ -1,5 +1,7 @@
 import numpy as np
 from tabulate import tabulate
+from sympy import *
+from matplotlib import pyplot
 from math import *
 
 #Creamos la clase Un5
@@ -76,26 +78,37 @@ class Un5:
 
             elif opc==3:
                 #Metodo de Runge Kutta para orden 4
-                #fx=input("Ingrese la funcion trigonometrica ")
+                x,y=symbols("x y")
+
+                try:
+                    fn=eval(input("Ingrese la funcion f(x,y): "))
+                    print(fn)
+                except:
+                    print("La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion ")
                 #Por definicion n=4
-                def f(t,y):
-                    func=t*exp(3*t)-2*y
-                    return func
+                x0=float(input("Ingrese el valor incial de x0: "))
+                y0 = float(input("Ingrese el valor incial de y0: "))
+                while True:
+                    h=float(input("Ingrese el tamaño de paso h: "))
+                    if h<=0:
+                        print("El tamaño de paso no puede cer cero o negativo")
+                    else:
 
-                def RK4(t,y,h,n):
-                    print('y(',t,')=',y)
-                    n=4
-                    for k in range(n):
-                        k1=f(t,y)
-                        k2=f(t+(h/2),y+(h/2)*k1)
-                        k3=f(t+(h/2),y+(h/2)*k2)
-                        k4=f(t+h,y+h*k2)
-                        y=y+h/6*(k1+2*k2+2*k3+k4)
-                        t+=h
-                        print('y(', t, ')=', y)
-
-                RK4(0,2,0.1,10)
+                        break
+                xn=float(input("Ingrese el valor a calcular y(xn): "))
+                itc=round(((xn-x0)/h))
+                vx=[]
+                vy=[]
+                print("--------- Tabla de valores ---------")
+                for i in range(1,itc+1):
+                    k1=fn.subs([(x,x0),(y,y0)])
+                    k2=fn.subs([(x,x0+h/2),(y,y0+(h/2)*k1)])
+                    k3=fn.subs([(x,x0+h/2),(y,y0+(h/2)*k2)])
+                    k4=fn.subs([(x,x0+h),(y,y0+h*k3)])
+                    yn=y0+h/6*(k1+2*k2+2*k3+k4)
+                    x0=round(x0+h,5)
+                    y0=yn
+                    print('y(',x0,')=',yn)
                 break
-
             else:
                 break
