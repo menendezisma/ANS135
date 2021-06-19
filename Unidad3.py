@@ -3,7 +3,7 @@ import sympy as sym
 import numpy as np
 from tabulate import tabulate
 import matplotlib.pyplot as plt
-from math import *
+import os
 
 #Creamos la clase Un3
 class Un3:
@@ -16,7 +16,52 @@ class Un3:
         while metodo > 0 and metodo < 5:
             #Opcion 1 Interpolacion de Lagrange
             if metodo == 1:
-                print("1")
+                opc=int(input("Ingrese la opcion deseada\n1.Ingresar datos\n2.Ingresar funcion "))
+                while opc > 0 and opc < 3:
+                    if opc==1:
+                        #Creo las listas vacias a utilizar
+                        data = []
+                        xi = []
+                        fi = []
+                        #Definimos nuestro simbolo
+                        x = sym.Symbol('x')
+                        y = 0
+                        num = 1
+                        denom = 1
+                        pol = 0
+                        #Solicitamos al usuario que ingrese los datos
+                        n = int(input("Ingrese la cantidad de datos a ingresar "))
+                        for i in range(n):
+                            datoXi = float(input("Ingrese el dato x{}: ".format(i)))
+                            xi.append(datoXi)
+                            datoFi = float(input("INgrese el dato y{}: ".format(i)))
+                            fi.append(datoFi)
+                            data.append([datoXi, datoFi])
+                        os.system("cls")
+                        print(tabulate(data, headers=["x", "y"], tablefmt="pretty"))
+                        # procedimiento de Langrage
+
+                        for y in range(0, n, 1):
+                            num = 1
+                            denom = 1
+                            for j in range(0, n, 1):
+                                if y != j:
+                                    num *= (x - xi[j])
+                                    denom = denom * (xi[y] - xi[j])
+                                termino = (num / denom) * fi[y]
+                            pol+= + termino
+                        polinomioSimple = sym.expand(pol)
+                        funcion = " ", polinomioSimple
+                        print("Polinomio: \n", pol)
+                        print("\nPolinomio Simple: \n", polinomioSimple)
+
+                        break
+                    elif opc==2:
+                        break
+                    else:
+                        break
+
+
             # Opcion 2 Polinomio de newton
             elif metodo == 2:
                 print("2")
