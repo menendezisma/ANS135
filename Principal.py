@@ -36,21 +36,14 @@ except:
 #try:
 # Saludamos el usuario e implementamos un menu para que el usuario elija
 print("\x1b[1;34m" + "..:Bienvenido:..")
-menu = int(input("Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
+menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
 
 # La opcion ingresada tiene que estar entre 1 y 5
 while menu > 0 or menu < 6:
     # OPCION 1
     if menu == 1:
-        # Desplegamos un menu para que el usuario elija la funcion que desea resolver
-        opcion = int(input(
-            "\x1b[1;32m" + "Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\n12.Limpiar consola\nOtro numero para salir " + "\x1b[0;30m"))
-
-        while opcion > 0 or opcion < 13:
-            # Creamos una nueva instancia de la clase unidad 1
-            Unidad1 = Un1.U1(opcion, tolerancia)
-            opcion = int(input(
-                    "\x1b[1;32m" + "Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\n12.Limpiar consola\nOtro numero para salir " + "\x1b[0;30m"))
+        # Creamos una nueva instancia de la clase unidad 1
+        Unidad1 = Un1.U1(tolerancia)
 
     # OPCION 2
     elif menu == 2:
@@ -80,8 +73,7 @@ while menu > 0 or menu < 6:
     else:
         break
 
-    menu = int(input(
-            "Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
+    menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
 '''except:
     print("\x1b[1;31m"+"Ingrese un numero valido")
     exit()'''

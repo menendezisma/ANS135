@@ -41,7 +41,7 @@ class Un2:
                     plt.plot(x, ejey)
                     #Mostramos nuestra grafica
                     plt.show()
-                    break
+
 
                 # Si la opcion es 2 Biseccion
                 elif metodo == 2:
@@ -105,7 +105,7 @@ class Un2:
                         #Imprimimos la tabla
                     print(tabulate(data, headers=["It", "x1", "x2", "xr", "F(x1)", "F(xr)", "F(x1)*F(xr)", "Ea"],
                                    tablefmt="github"))
-                    break
+
 
                 # Si la opcion es 6 Secante
                 elif metodo==6:
