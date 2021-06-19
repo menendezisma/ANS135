@@ -488,7 +488,7 @@ class Un1:
             it = 0
             # valor actual: va
             va = g(x, it)
-            # valor pasado: vp
+            # valor pasado: vp}
             vp = 0
 
             oncemore = iter([True, False])

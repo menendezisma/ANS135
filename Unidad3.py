@@ -1,6 +1,9 @@
 import time
-import sympy
+import sympy as sym
+import numpy as np
 from tabulate import tabulate
+import matplotlib.pyplot as plt
+from math import *
 
 #Creamos la clase Un3
 class Un3:
@@ -19,13 +22,113 @@ class Un3:
                 print("2")
             # Opcion 3 Diferencias divididas
             elif metodo == 3:
-                print("3")
+                # Polinomio interpolación
+                # Diferencias Divididas de Newton
+                # INGRESO , Datos de prueba
+                xi = np.array([5, 6, 7, 8, 9, 10])
+                fi = np.array([3, 7, 6, 5, -2, 1])
+
+                ####################### Por si se da la funcion #################
+                # fi=[]
+                # def poli(x):
+                #     return (sin(x))*(log(x))
+
+                # for y in xi:
+                #     fi.append(poli(y))
+
+                # fi = np.array(fi)
+                #################################################################
+
+                # PROCEDIMIENTO
+                # Tabla de Diferencias Divididas Avanzadas
+                titulo = ['i   ', 'xi  ', 'fi  ']
+                n = len(xi)
+                ki = np.arange(0, n, 1)
+                tabla = np.concatenate(([ki], [xi], [fi]), axis=0)
+                tabla = np.transpose(tabla)
+
+                # diferencias divididas vacia
+                dfinita = np.zeros(shape=(n, n), dtype=float)
+                tabla = np.concatenate((tabla, dfinita), axis=1)
+
+                # Calcula tabla, inicia en columna 3
+                [n, m] = np.shape(tabla)
+                diagonal = n - 1
+                j = 3
+                while (j < m):
+                    # Añade título para cada columna
+                    titulo.append('F[' + str(j - 2) + ']')
+
+                    # cada fila de columna
+                    i = 0
+                    paso = j - 2  # inicia en 1
+                    while (i < diagonal):
+                        denominador = (xi[i + paso] - xi[i])
+                        numerador = tabla[i + 1, j - 1] - tabla[i, j - 1]
+                        tabla[i, j] = numerador / denominador
+                        i = i + 1
+                    diagonal = diagonal - 1
+                    j = j + 1
+
+                # POLINOMIO con diferencias Divididas
+                # caso: puntos equidistantes en eje x
+                dDividida = tabla[0, 3:]
+                n = len(dfinita)
+
+                # expresión del polinomio con Sympy
+                x = sym.Symbol('x')
+                polinomio = fi[0]
+                for j in range(1, n, 1):
+                    factor = dDividida[j - 1]
+                    termino = 1
+                    for k in range(0, j, 1):
+                        termino = termino * (x - xi[k])
+                    polinomio = polinomio + termino * factor
+
+                # simplifica multiplicando entre (x-xi)
+                polisimple = polinomio.expand()
+
+                # polinomio para evaluacion numérica
+                px = sym.lambdify(x, polisimple)
+                print("El valor del punto es", px(2.3))
+
+                # Puntos para la gráfica
+                muestras = 101
+                a = np.min(xi)
+                b = np.max(xi)
+                pxi = np.linspace(a, b, muestras)
+                pfi = px(pxi)
+
+                # SALIDA
+                np.set_printoptions(precision=4)
+                print('Tabla Diferencia Dividida')
+                # print([titulo])
+                # print(tabla)
+                print(tabulate(tabla, headers=titulo, tablefmt="pretty"))
+                print('dDividida: ')
+                print(dDividida)
+                print('polinomio: ')
+                print(polinomio)
+                print('polinomio simplificado: ')
+                print(polisimple)
+
+                # Gráfica
+                plt.plot(xi, fi, 'o', label='Puntos')
+                ##for i in range(0,n,1):
+                ##    plt.axvline(xi[i],ls='--', color='yellow')
+                plt.plot(pxi, pfi, label='Polinomio')
+                plt.legend()
+                plt.xlabel('X')
+                plt.ylabel('Y')
+                plt.title('Diferencias Divididas - Newton')
+                plt.show()
 
             # Opcion 4 Interpolacion de Hermite
             elif metodo == 4:
                 #Solicitamos el usuario la funcion
                 fn = input("\x1b[1;30m" + "Ingrese la funcion en terminos de x ")
-                dfn=sympy.diff(fn)
+                dfn=sym.diff(fn)
+
                 #Imprimimos la funcion y su derivada
                 print("f(x)= ", fn)
                 print("f'(x)= ", dfn)
@@ -45,6 +148,12 @@ class Un3:
                     Fx.append(y)
                     data.append([x, y])
 
+                # Tabla de Diferencias Divididas Avanzadas
+                n = len(X)
+
+                # diferencias divididas vacia
+                dfinita = np.zeros(shape=(n, n), dtype=float)
+                data = np.concatenate((data, dfinita), axis=1)
                 indice=0
                 while indice<n:
                     b0=Fx[0]
