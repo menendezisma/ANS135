@@ -24,6 +24,14 @@ except:
     print("Para instalar numpy, por favor ejecute\npip install numpy")
     exit()
 
+#try:
+# Saludamos el usuario e implementamos un menu para que el usuario elija
+print("\x1b[1;34m" + "..............................:Bienvenido:.............................."+"\x1b[0;31m")
+print("\x1b[3;31m"+"--------------- Recomendaciones para el uso del programa---------------\n"+"\x1b[3;31m")
+print("Los terminos de las expresiones deben ir con un * entre ellas\npara usar la raiz cuadrada use sqrt()")
+print("para las funciones trogonometricas use: sin(), cos(), tan()\npara usar la funcion exponencial use exp()\nsi solo desea elevar a una potencia use **")
+print("------------------------------------------------------------------------"+"\x1b[1;34m")
+
 try:
      #Pedimos al usuario el numero de cifras significativas
      cifras = int(input("Cuantas cifras significativas desea "))
@@ -33,9 +41,6 @@ except:
     print("\x1b[1;31m"+"Ingrese un numero valido")
     exit()
 
-#try:
-# Saludamos el usuario e implementamos un menu para que el usuario elija
-print("\x1b[1;34m" + "..:Bienvenido:..")
 menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
 
 # La opcion ingresada tiene que estar entre 1 y 5
