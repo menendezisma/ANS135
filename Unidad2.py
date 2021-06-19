@@ -1,5 +1,6 @@
 #Importamos las librerias necesarias
 import numpy as np
+import sympy as sp
 from math import *
 from numpy import sign
 from tabulate import tabulate
@@ -151,6 +152,55 @@ class Un2:
                     else:
                         print("\x1b[1;31m"+"No existe solucion en dicho intervalo"+"\x1b[0;30m")
 
+                elif metodo==4:
+                    x = sp.Symbol('x')
+                    oncemore = iter([True, False])
+                    data = []
+
+                    # Obtengo función g(x) proporcionado por el usuario
+                    # fgx=(input("Por favor ingrese g(x):"))
+                    # print(fgx)
+
+                    # defino la funcion
+                    def g(x):
+                        # y=fgx
+                        y = (2 * x + 3) ** (1 / 2)
+                        return (y)
+
+                    # Obtengo el punto inicial
+                    x0 = float(input("\x1b[0;30m""¿Cual es el valor de X0?\n"))
+
+                    # Evaluo en el punto con la g'(x)
+                    evaluando = sp.diff((2 * x + 3) ** (1 / 2), x).subs(x, x0)
+                    print(evaluando)
+
+                    # Compruebo si existe convergencia
+
+                    if (evaluando < 1):  # converge
+                        i = 0
+                        xr = 0
+                        E = 100
+                        while E > tolerancia:
+                            i += 1
+                            # Resguardo mi valor para la siguiente iteración
+                            xr_anterior = x0
+                            # Calculo la aproximacion
+                            xr = g(x0)
+                            # ahora calculamos el error
+                            E = 0
+                            E = abs((xr - xr_anterior) / xr) * 100
+                            # Imprimo los valores en la tabla creada
+                            data.append([i, xr_anterior, xr, E])
+                            x0 = xr
+                        # Genero el encabezado de la tabla,ademas de imprimir los valores obtenidos
+                        print(tabulate(data, headers=["Iteración", "X", "g(x)", "Ea"], tablefmt="orgtbl"))
+                        print("\nEn iteracion :  " + str(i))
+                        print("Se obtuvo como resultado de xr=  " + str(xr))
+                        print("Con un error de Ea=" + str(E) + "\n")
+                    else:
+                        print("\x1b[1;31m"+"No posee convergencia en el punto proporcionado"+"\x1b[0;30m")
+
+
                 #Si la opcion es 6 Secante
                 elif metodo==6:
                     # Error
@@ -184,7 +234,7 @@ class Un2:
                     if fx(xa) * fx(xb) < 0:
                         print("Converge")
                     else:
-                        print("No converge")
+                        print("\x1b[1;31m"+"No converge"+"\x1b[0;30m")
                         exit()
 
                     # PROCEDIMIENTO
