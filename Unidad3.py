@@ -10,7 +10,7 @@ class Un3:
     #Definimos la funcion U3
     def U3(self):
         #Desplegamos un menu
-        metodo = int(input("\x1b[1;35m"+"Ingrese el numero del metodo por el que desea aproximar la raiz\n1.Interpolación de Lagrange\n2.Interpolación del polinomio de Newton"
+        metodo = int(input("\x1b[3;35m"+"Ingrese el numero del metodo por el que desea aproximar la raiz\n1.Interpolación de Lagrange\n2.Interpolación del polinomio de Newton"
             "\n3.Diferencias Divididas\n4.Polinomio de Hermite\nOtro numero para salir "+"\x1b[0;30m"))
 
         while metodo > 0 and metodo < 5:
@@ -171,5 +171,5 @@ class Un3:
             else:
                 break
 
-            metodo = int(input("\x1b[0;35m"+"Ingrese el numero del metodo por el que desea aproximar la raiz\n1.Interpolación de Lagrange\n2.Interpolación del polinomio de Newton"
+            metodo = int(input("\x1b[3;35m"+"Ingrese el numero del metodo por el que desea aproximar la raiz\n1.Interpolación de Lagrange\n2.Interpolación del polinomio de Newton"
                 "\n3.Diferencias Divididas\n4.Polinomio de Hermite\nOtro numero para salir "+"\x1b[0;30m"))

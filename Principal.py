@@ -58,7 +58,7 @@ while menu > 0 or menu < 6:
     #OPCION 4
     elif menu == 4:
         #Creamos una instancia nueva de la unidad 4
-        integracion=int(input("\x1b[1;32m" + "Ingrese el numero de la opcion deseada\n1.Derivacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
+        integracion=int(input("\x1b[3;32m" + "Ingrese el numero de la opcion deseada\n1.Derivacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
         while integracion > 0 and integracion < 5:
             if integracion==1:
                 DifNum=Diferenciacion()
@@ -66,7 +66,7 @@ while menu > 0 or menu < 6:
                 IntNum = Integracion()
             else:
                 break
-        integracion=int(input("\x1b[1;32m" + "Ingrese el numero de la opcion deseada\n1.Derivacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
+        integracion=int(input("\x1b[3;32m" + "Ingrese el numero de la opcion deseada\n1.Derivacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
 
     elif menu==5:
         Unidad5=Un5.U5()

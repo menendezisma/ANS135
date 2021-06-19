@@ -1,11 +1,12 @@
 import numpy as np
 from tabulate import tabulate
+from math import *
 
 #Creamos la clase Un5
 class Un5:
     #Definimos la funcion principal U5
     def U5(self=None):
-        opc = int(input("Ingrese el numero de la opcion deseada\n1.Metodo de Euler\n2.Metodo de Taylor\n3.Metodo de Runge Kutta\n4.Metodo adaptativo\nOtro numero para salir\n "))
+        opc = int(input("\x1b[3;35m"+"Ingrese el numero de la opcion deseada\n1.Metodo de Euler\n2.Metodo de Taylor\n3.Metodo de Runge Kutta\n4.Metodo adaptativo\nOtro numero para salir\n"))
 
         while opc > 0 and opc < 5:
             if opc==2:
@@ -72,5 +73,29 @@ class Un5:
                 plt.grid()
                 plt.show()
                 break
+
+            elif opc==3:
+                #Metodo de Runge Kutta para orden 4
+                #fx=input("Ingrese la funcion trigonometrica ")
+                #Por definicion n=4
+                def f(t,y):
+                    func=t*exp(3*t)-2*y
+                    return func
+
+                def RK4(t,y,h,n):
+                    print('y(',t,')=',y)
+                    n=4
+                    for k in range(n):
+                        k1=f(t,y)
+                        k2=f(t+(h/2),y+(h/2)*k1)
+                        k3=f(t+(h/2),y+(h/2)*k2)
+                        k4=f(t+h,y+h*k2)
+                        y=y+h/6*(k1+2*k2+2*k3+k4)
+                        t+=h
+                        print('y(', t, ')=', y)
+
+                RK4(0,2,0.1,10)
+                break
+
             else:
                 break

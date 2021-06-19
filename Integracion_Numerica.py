@@ -8,12 +8,11 @@ def Integracion():
     #Desplegamos un menu
     print("..:Bienvenido:..")
     print("..Integracion numerica..")
-    opc = int(input(
-        "Ingrese el numero de la opcion deseada\n1.Reglas de integracion numerica \n2.Integracion por Rosemberg\nOtro numero para salir\n "))
-    while opc > 0 or opc < 3:
+    opc = int(input("Ingrese el numero de la opcion deseada\n1.Reglas de integracion numerica \n2.Integracion por Rosemberg\nOtro numero para salir\n "))
+    while opc > 0 and opc < 3:
         #Reglas de integracion numerica
         if opc==1:
-            opcion = int(input("\x1b[1;31m" + "Ingrese el numero de la regla para aproximar el valor de la integral\n""1.Trapecio Simple\n2.Trapecio compuesto\n3.Simpson 1/3 simple\n4.Simpson 1/3 compuesto\n5.Simpson 3/8 simple\n6.Simpson 3/8 compuesto\nOtro numero para salir " + "\x1b[0;30m"))
+            opcion = int(input("\x1b[3;31m" + "Ingrese el numero de la regla para aproximar el valor de la integral\n""1.Trapecio Simple\n2.Trapecio compuesto\n3.Simpson 1/3 simple\n4.Simpson 1/3 compuesto\n5.Simpson 3/8 simple\n6.Simpson 3/8 compuesto\nOtro numero para salir " + "\x1b[0;30m"))
             while opcion > 0 or opcion < 7:
                 # Trapecio simple
                 if opcion == 1:
@@ -320,7 +319,7 @@ def Integracion():
 
                 else:
                     break
-                opcion = int(input("\x1b[1;31m" + "Ingrese el numero de la regla para aproximar el valor de la integral\n""1.Trapecio Simple\n2.Trapecio compuesto\n3.Simpson 1/3 simple\n4.Simpson 1/3 compuesto\n5.Simpson 3/8 simple\n6.Simpson 3/8 compuesto\nOtro numero para salir " + "\x1b[0;30m"))
+                opcion = int(input("\x1b[3;31m" + "Ingrese el numero de la regla para aproximar el valor de la integral\n""1.Trapecio Simple\n2.Trapecio compuesto\n3.Simpson 1/3 simple\n4.Simpson 1/3 compuesto\n5.Simpson 3/8 simple\n6.Simpson 3/8 compuesto\nOtro numero para salir " + "\x1b[0;30m"))
 
        #Integracion por rosemberg
         elif opc==2:
@@ -352,3 +351,4 @@ def Integracion():
 
         else:
             break
+        opc = int(input("Ingrese el numero de la opcion deseada\n1.Reglas de integracion numerica \n2.Integracion por Rosemberg\nOtro numero para salir\n "))

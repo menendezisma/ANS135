@@ -14,7 +14,7 @@ class Un2:
         #Validamos que en realidad se trate de una funcion exponencial
         if "**x" in fx or "exp(" in fx or "**-x" in fx:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
-            metodo = int(input("\x1b[1;36m"+
+            metodo = int(input("\x1b[3;36m"+
                 "Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
                 "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir\n"+"\x1b[0;30m"))
 
@@ -212,7 +212,7 @@ class Un2:
 
                     print("Para que se mire toda la tabla en orden, es necesario hacer más pequeña la letra de la consola, esto es debido al gran número de variables")
 
-                metodo = int(input("\x1b[1;36m"+"Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
+                metodo = int(input("\x1b[3;36m"+"Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
                     "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir "+"\x1b[0;30m"))
 
         #Si la funcion no es exponencial devolvemos al usuario el mensaje
