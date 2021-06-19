@@ -5,6 +5,12 @@ import numpy as np
 from tabulate import tabulate
 from matplotlib import pyplot as plt
 
+''' 
+Va=Valor actual
+Vp= Valor Pasado
+Ea=Error absoluto
+'''
+
 #Creamos la clase Un1
 class Un1:
     #Creamos la funcion U1 y le pasamos los argumentos opcion y tol
@@ -53,6 +59,28 @@ class Un1:
                 plt.plot(x, le(x))
                 # Mostramos la grafica al usuario
                 plt.show()
+                e = math.e
+                n = 0
+                # (vf)=valor funsion,(va)=valor anterior,(Ea)=error aproximado
+                data = []
+                x = float(input("¿Cual es el valor de x?\n"))
+                valorReal = math.log(e + x)
+                print("Valor real:" + str(valorReal))
+                vf = 1
+                data.append([0, vf, 0, "-"])
+                n = 1
+                ea = 1
+                va = 0
+                while ea > tol:
+                    va = vf
+                    vf = (va + (((x ** (n)) / ((n) * (e ** (n)))) * (-1) ** ((n) + 1)))
+                    ea = abs((vf - va) / vf) * 100
+                    data.append([n, vf, va, ea])
+                    n = n + 1
+                print(tabulate(data, headers=["It", "Valor presente", "Valor anterior", "Er"], tablefmt="orgtbl"))
+                print("\nEn iteracion :  " + str(n - 1))
+                print("Se obtuvo como resultado de xr=  " + str(vf))
+                print("Con un error de Ea=" + str(ea) + "\n")
 
             # Si la opcion elejida fue 2
             elif opcion == 2:
@@ -105,20 +133,13 @@ class Un1:
                 cifras = -1
                 ea = 1000
 
-                while (cifras < 0):
-                    cifras = int(input("ingrese la cantidad de cifras significativas "))
-                    if (cifras < 0):
-                        print("el numero que ingreso no es valido")
-                    else:
-                        es = (0.5 * (10 ** (2 - cifras)))
-
                 # Pedimos el valor de x para evaluar la funcion
                 x = float(input("ingrese el valor de x "))
                 value = math.sin(x)
                 aprox = x
                 n = 1
 
-                while (ea > es):
+                while (ea > tol):
                     ant = aprox
                     aprox = aprox + (((-1) ** n) * (x ** (2 * n + 1)) / math.factorial(2 * n + 1))
                     # Calculamos el Ea
@@ -241,12 +262,7 @@ class Un1:
                 # Mostramos la grafica al usuario
                 plt.show()
 
-                # Pedimos al usuario las cifras significativas y calculamos el error
-                cifras = int(input("¿Cuantas cifras significativas desea? "))
-                tolerancia = 0.5 * (10 ** (2 - cifras))
-
-                # Pedimos al usuario el valor de x
-                x = float(input("¿Cual es el valor de x? \n"))
+                x = float(input("¿Cual es el valor de x?\n"))
 
                 # se define la serie de la funcion
                 def g(x, n):
@@ -268,14 +284,17 @@ class Un1:
                 oncemore = iter([True, False])
                 data = []
 
-                while Ea(vp, va) > tolerancia or next(oncemore):
+                while Ea(vp, va) > tol or next(oncemore):
                     data.append([n + 1, vp, va, Ea(vp, va)])
                     va = vp
                     # aumentamos 1 a n
                     n += 1
                     vp += g(x, n)
-                    # Imprimimos la tabla
+
                 print(tabulate(data, headers=["It", "Valor presente", "Valor anterior", "Er"], tablefmt="orgtbl"))
+                print("\nEn iteracion :  " + str(n))
+                print("Se obtuvo como resultado de xr=  " + str(vp))
+                print("Con un error de Ea=" + str(Ea(vp, va)) + "\n")
 
             # Si la opcion elejida fue 7
             elif opcion == 7:
@@ -328,13 +347,6 @@ class Un1:
                 cifras = -1
                 ea = 1000
 
-                while (cifras < 0):
-                    cifras = int(input("ingrese la cantidad de cifras significativas "))
-                    if (cifras < 0):
-                        print("el numero que ingreso no es valido")
-                    else:
-                        es = (0.5 * (10 ** (2 - cifras)))
-
                 # Pedimos al usuario el valor de x
                 x = float(input("ingrese el valor de x, intervalo[-1,1]"))
                 while (x < -1 or x > 1):
@@ -346,7 +358,7 @@ class Un1:
                 aprox = x + ((1 / 2) * (((x) ** 3) / 3))
                 n = 2
 
-                while (ea > es):
+                while (ea > tol):
                     ant = aprox
                     aprox = aprox + (((math.factorial(2 * n)) / (((2 ** n) * math.factorial(n)) ** 2)) * (
                             (x ** ((2 * n) + 1)) / ((2 * n) + 1)))
@@ -385,25 +397,25 @@ class Un1:
                 # Pedimos al usuario el valor de x
                 x = float(input("Cual es el valor de x? \n"))
                 if not (-1 < x < 1):
-                    # Si el numeor no se encuentra en el intervalo dado devuelve el mensaje
+                    # Si el numero no se encuentra en el intervalo dado devuelve el mensaje
                     print("El valor de \"x\" tiene que ser mayor a -1 y menor a 1")
                     exit()
+                else:
+                    # Se define la naturaleza de la funcion
+                    def g(x, it):
+                        return (((-1) ** (it)) / (it + 1)) * (x ** (it + 1))
 
-                # Se define la naturaleza de la funcion
-                def g(x, it):
-                    return (((-1) ** (it)) / (it + 1)) * (x ** (it + 1))
+                    # iteracion: it
+                    it = 0
+                    # valor actual: va
+                    va = g(x, it)
+                    # valor pasado: vp
+                    vp = 0
 
-                # iteracion: it
-                it = 0
-                # valor actual: va
-                va = g(x, it)
-                # valor pasado: vp
-                vp = 0
-
-                oncemore = iter([True, False])
-                data = []
-                # Pasamos lo parametros a la funcion tabular para que se imprima la tabla
-                tabular(va, vp, it)
+                    oncemore = iter([True, False])
+                    data = []
+                    # Pasamos lo parametros a la funcion tabular para que se imprima la tabla
+                    tabular(va, vp, it)
 
             # Si la opcion elejida fue 10
             elif opcion == 10:

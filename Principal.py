@@ -24,22 +24,13 @@ except:
     print("Para instalar numpy, por favor ejecute\npip install numpy")
     exit()
 
-#try:
-# Saludamos el usuario e implementamos un menu para que el usuario elija
+#Saludamos el usuario e implementamos un menu para que el usuario elija
 print("\x1b[1;34m" + "..............................:Bienvenido:.............................."+"\x1b[0;31m")
 print("\x1b[3;31m"+"--------------- Recomendaciones para el uso del programa---------------\n"+"\x1b[3;31m")
 print("Los terminos de las expresiones deben ir con un * entre ellas\npara usar la raiz cuadrada use sqrt()")
 print("para las funciones trogonometricas use: sin(), cos(), tan()\npara usar la funcion exponencial use exp()\nsi solo desea elevar a una potencia use **")
 print("------------------------------------------------------------------------"+"\x1b[1;34m")
 
-try:
-     #Pedimos al usuario el numero de cifras significativas
-     cifras = int(input("Cuantas cifras significativas desea "))
-     # Calculamos el error Es
-     tolerancia = 0.5 * (10 ** (2 - cifras))
-except:
-    print("\x1b[1;31m"+"Ingrese un numero valido")
-    exit()
 
 menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
 
@@ -47,8 +38,20 @@ menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 
 while menu > 0 or menu < 6:
     # OPCION 1
     if menu == 1:
-        # Creamos una nueva instancia de la clase unidad 1
-        Unidad1 = Un1.U1(tolerancia)
+        try:
+            # Pedimos al usuario el numero de cifras significativas
+            cifras = int(input("Cuantas cifras significativas desea "))
+            if cifras >= 0:
+                # Calculamos el error Es
+                tolerancia = 0.5 * (10 ** (2 - cifras))
+
+                # Creamos una nueva instancia de la clase unidad 1
+                Unidad1 = Un1.U1(tolerancia)
+            else:
+                print("\x1b[1;31m" + "Ingrese un numero valido"+"\x1b[1;31m")
+
+        except:
+            print("\x1b[1;31m" + "Ingrese un numero valido"+"\x1b[1;31m")
 
     # OPCION 2
     elif menu == 2:
@@ -71,7 +74,7 @@ while menu > 0 or menu < 6:
                 IntNum = Integracion()
             else:
                 break
-        integracion=int(input("\x1b[3;32m" + "Ingrese el numero de la opcion deseada\n1.Derivacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
+            integracion=int(input("\x1b[3;32m" + "Ingrese el numero de la opcion deseada\n1.Derivacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
 
     elif menu==5:
         Unidad5=Un5.U5()
@@ -79,6 +82,3 @@ while menu > 0 or menu < 6:
         break
 
     menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "))
-'''except:
-    print("\x1b[1;31m"+"Ingrese un numero valido")
-    exit()'''
