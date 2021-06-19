@@ -11,7 +11,42 @@ class Un5:
         opc = int(input("\x1b[3;35m"+"Ingrese el numero de la opcion deseada\n1.Metodo de Euler\n2.Metodo de Taylor\n3.Metodo de Runge Kutta\n4.Metodo adaptativo\nOtro numero para salir\n"))
 
         while opc > 0 and opc < 5:
-            if opc==2:
+            if opc==1:
+                #Metod Euler mejorado
+                x,y = symbols("x y")
+                try:
+                    fn = eval(input("\x1b[0;30m"+"Ingrese la funcion f(x,y): "))
+                    print(fn)
+                    x0 = float(input("Ingrese el valor incial de x0: "))
+                    y0 = float(input("Ingrese el valor incial de y0: "))
+                    # Creamos un bucle para pedir le al usuario el valor de h y que sea valido
+
+                    while True:
+                        h = float(input("Ingrese el tamaño de paso h: "))
+                        if h <= 0:
+                            print("El tamaño de paso no puede cer cero o negativo")
+                        else:
+                            break
+
+                    xn = float(input("Ingrese el valor a calcular y(xn): "))
+                    itc = round(((xn - x0) / h))
+                    vx = []
+                    vy = []
+                    print("--------- Tabla de valores ---------")
+                    for i in range(1, itc + 1):
+                        f1 = fn.subs([(x, x0), (y, y0)])
+                        u = y0 + h * f1
+                        f2 = fn.subs([(x, x0 + h), (y, u)])
+                        yn = y0 + h * ((f1 + f2) / 2)
+                        x0 = round(x0 + h, 5)
+                        y0 = yn
+                        print("\x1b[1;35m"+'y(', x0, ')=', yn)
+                    print("\nValor aproximado: ", yn)
+
+                except:
+                    print("\x1b[1;31m"+"La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion "+"\x1b[1;31m")
+                break
+            elif opc==2:
                 def edo_taylor3t(d1y, d2y, x0, y0, h, muestras):
                     tamano = muestras + 1
                     estimado = np.zeros(shape=(tamano, 4), dtype=float)
@@ -81,34 +116,35 @@ class Un5:
                 x,y=symbols("x y")
 
                 try:
-                    fn=eval(input("Ingrese la funcion f(x,y): "))
+                    fn=eval(input("\x1b[0;30m"+"Ingrese la funcion f(x,y): "))
                     print(fn)
-                except:
-                    print("La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion ")
-                #Por definicion n=4
-                x0=float(input("Ingrese el valor incial de x0: "))
-                y0 = float(input("Ingrese el valor incial de y0: "))
-                while True:
-                    h=float(input("Ingrese el tamaño de paso h: "))
-                    if h<=0:
-                        print("El tamaño de paso no puede cer cero o negativo")
-                    else:
+                    # Por definicion n=4
+                    x0 = float(input("Ingrese el valor incial de x0: "))
+                    y0 = float(input("Ingrese el valor incial de y0: "))
+                    while True:
+                        h = float(input("Ingrese el tamaño de paso h: "))
+                        if h <= 0:
+                            print("El tamaño de paso no puede cer cero o negativo")
+                        else:
 
-                        break
-                xn=float(input("Ingrese el valor a calcular y(xn): "))
-                itc=round(((xn-x0)/h))
-                vx=[]
-                vy=[]
-                print("--------- Tabla de valores ---------")
-                for i in range(1,itc+1):
-                    k1=fn.subs([(x,x0),(y,y0)])
-                    k2=fn.subs([(x,x0+h/2),(y,y0+(h/2)*k1)])
-                    k3=fn.subs([(x,x0+h/2),(y,y0+(h/2)*k2)])
-                    k4=fn.subs([(x,x0+h),(y,y0+h*k3)])
-                    yn=y0+h/6*(k1+2*k2+2*k3+k4)
-                    x0=round(x0+h,5)
-                    y0=yn
-                    print('y(',x0,')=',yn)
+                            break
+                    xn = float(input("Ingrese el valor a calcular y(xn): "))
+                    itc = round(((xn - x0) / h))
+                    vx = []
+                    vy = []
+                    print("--------- Tabla de valores ---------")
+                    for i in range(1, itc + 1):
+                        k1 = fn.subs([(x, x0), (y, y0)])
+                        k2 = fn.subs([(x, x0 + h / 2), (y, y0 + (h / 2) * k1)])
+                        k3 = fn.subs([(x, x0 + h / 2), (y, y0 + (h / 2) * k2)])
+                        k4 = fn.subs([(x, x0 + h), (y, y0 + h * k3)])
+                        yn = y0 + h / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
+                        x0 = round(x0 + h, 5)
+                        y0 = yn
+                        print("\x1b[1;35m"+'y(', x0, ')=', yn)
+                    print("\nValor aproximado: ", yn)
+                except:
+                    print("\x1b[1;31m"+"La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion "+"\x1b[1;31m")
                 break
             else:
                 break
