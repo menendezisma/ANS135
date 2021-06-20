@@ -37,8 +37,8 @@ class Un5:
                             vy = []
                             print("--------- Tabla de valores ---------")
                             for i in range(1, itc + 1):
-                                x[i]
-                                yn = y0 + h * ((f1 + f2) / 2)
+                                f=fn.subs([(x,x0),(y,y0)])
+                                yn = y0 + h *f
                                 x0 = round(x0 + h, 5)
                                 y0 = yn
                                 print("\x1b[1;35m" + 'y(', x0, ')=', yn)
@@ -46,7 +46,7 @@ class Un5:
 
                         except:
                             print(
-                                "\x1b[1;31m" + "La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion " + "\x1b[1;31m")
+                                "\x1b[1;31m" + "La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion " + "\x1b[1;35m")
 
                     elif euler==4:
                         # Metod Euler mejorado
