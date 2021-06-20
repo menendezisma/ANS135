@@ -15,12 +15,11 @@ class Un2:
         #Validamos que en realidad se trate de una funcion exponencial
         if "**x" in fx or "exp(-x" in fx or "exp(-x" in fx or "**-x" in fx:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
-            metodo = int(input("\x1b[3;36m"+
-                "Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
-                "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir\n"+"\x1b[1;36m"))
+            metodo = int(input("\x1b[3;36m"+"Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
+                "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Müller\nOtro numero para salir\n"+"\x1b[1;36m"))
 
-            while metodo > 0 and metodo < 10:
-                #Si la opcion es 1 Grafico
+            while metodo > 0 and metodo < 8:
+                #Opcion 1 Grafico
                 if metodo == 1:
                     #Definimos el rango de datos a evaluar la funcion
                     x = np.linspace(-3, 3)
@@ -41,9 +40,8 @@ class Un2:
                     #Mostramos nuestra grafica
                     plt.show()
 
-                # Si la opcion es 2 Biseccion
+                #Opcion 2 Biseccion
                 elif metodo == 2:
-                    # Biseccion
                     #Solicitamos el primer valor
                     x = float(input("\x1b[0;30m"+"Ingrese el valor para x1 "))
                     #Almacenamos el valor x en otra variable
@@ -103,7 +101,7 @@ class Un2:
                         #Imprimimos la tabla
                     print(tabulate(data, headers=["It", "x1", "x2", "xr", "F(x1)", "F(xr)", "F(x1)*F(xr)", "Ea"], tablefmt="github"))
 
-                #Si la opcion es 3 falsa posicion
+                #Opcion 3 falsa posicion
                 elif metodo==3:
                     oncemore = iter([True, False])
                     data = []
@@ -149,7 +147,7 @@ class Un2:
                     else:
                         print("\x1b[1;31m"+"No existe solucion en dicho intervalo"+"\x1b[0;30m")
 
-                #Si la opcion es 4 punto fijo
+                #Opcion 4 punto fijo
                 elif metodo==4:
                     x = sp.Symbol('x')
                     oncemore = iter([True, False])
@@ -191,7 +189,7 @@ class Un2:
                     else:
                         print("\x1b[1;31m"+"No posee convergencia en el punto proporcionado"+"\x1b[0;30m")
 
-                #Si la opcion es 5 Newton raphson
+                #Opcion 5 Newton raphson
                 elif metodo==5:
                     cifras = -1
                     ea = 1000
@@ -226,7 +224,7 @@ class Un2:
                         Xn = aprox
                         # incrementamos el valor de i
 
-                #Si la opcion es 6 Secante
+                #Opcion 6 Secante
                 elif metodo==6:
                     # Error
                     def errorAbs(va, vp):
@@ -272,7 +270,8 @@ class Un2:
                     print('raiz en: ', tabla[n - 1, 4])
                     print("Con error de: ", tabla[n - 1, 5])
 
-                elif metodo==9:
+                #Opcion 7 Müller
+                elif metodo==7:
                     # Funcion del Ejercicio
                     def f(x, funcion):
                         return eval(funcion.replace("x", str(x)))
@@ -331,8 +330,7 @@ class Un2:
 
                     print("Para que se mire toda la tabla en orden, es necesario hacer más pequeña la letra de la consola, esto es debido al gran número de variables")
 
-                metodo = int(input("\x1b[3;36m"+"Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
-                    "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir "+"\x1b[1;36m"))
+                metodo = int(input("\x1b[3;36m" +"Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n" "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Müller\nOtro numero para salir\n" + "\x1b[1;36m"))
 
         #Si la funcion no es exponencial devolvemos al usuario el mensaje
         else:
