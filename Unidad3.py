@@ -11,7 +11,7 @@ class Un3:
     def U3(self):
         #Desplegamos un menu
         metodo = int(input("\x1b[3;35m"+"Ingrese el numero del metodo por el que desea aproximar la raiz\n1.Interpolación de Lagrange\n2.Interpolación del polinomio de Newton"
-            "\n3.Diferencias Divididas\n4.pol de Hermite\nOtro numero para salir "+"\x1b[0;30m"))
+            "\n3.Diferencias Divididas\n4.Polinomio de Hermite\nOtro numero para salir "+"\x1b[0;30m"))
 
         while metodo > 0 and metodo < 5:
             #Opcion 1 Interpolacion de Lagrange
@@ -63,7 +63,60 @@ class Un3:
 
                         break
                     elif opc==2:
-                        break
+                        #Declaro las listas necesarias
+                        data = []
+                        xi = []
+                        fi = []
+                        #Declaro la variable a utilizar
+                        x = sym.Symbol('x')
+                        y = 0
+                        numerador = 1
+                        denominador = 1
+                        polinomio = 0
+
+                        #Solicito al usuario que ingrese la funcion
+                        funcion = input("Ingrese la funcion en terminos de x\nf(x): ")
+                        lista = funcion.split()
+                        for i in lista:
+                            # Solicitando datos al usuario para la funcion
+                            print("Ingrese el valor del intervalo a evaluar ")
+                            x0 = float(input("Ingrese el valor x0: "))
+                            x1 = float(input("Ingrese el valor x1: "))
+
+                            # Creando la tabla de datos
+                            xm = (x0 + x1) / 2
+                            nDatos = int(input("Ingrese la cantidad de datos "))
+                            for i in range(nDatos):
+                                if i % 2 == 0:
+                                    xm = (x0 + xm) / 2
+                                    datoFi = sym.sympify(funcion).subs(x,xm)
+                                    xi.append(xm)
+                                    fi.append(datoFi)
+                                    data.append([xm, datoFi])
+                                else:
+                                    xm = (x1 + xm) / 2
+                                    datoFi = sym.sympify(funcion).subs(x,xm)
+                                    xi.append(xm)
+                                    fi.append(datoFi)
+                                    data.append([xm, datoFi])
+
+                            data.sort()
+                            print(tabulate(data, headers=["x", "y"], tablefmt="pretty"))
+
+                            # procedimiento de Langrage
+                            for y in range(0, nDatos, 1):
+                                numerador = 1
+                                denominador = 1
+                                for j in range(0, nDatos, 1):
+                                    if y != j:
+                                        numerador = numerador * (x - xi[j])
+                                        denominador = denominador * (xi[y] - xi[j])
+                                    termino = (numerador / denominador) * fi[y]
+                                polinomio = polinomio + termino
+                            polinomioSimple = sym.expand(polinomio)
+                            funcion = " ", polinomioSimple
+                            print("polinomio: \n", polinomio)
+                            print("\npolinomio Simple: \n", polinomioSimple)
                     else:
                         break
 
@@ -171,9 +224,9 @@ class Un3:
                         lista = funcion.split()
                         for i in lista:
                             # Solicitando datos al usuario para la funcion
-                            print("\n Ingrese el valor del intervalo a evaluar ")
-                            x0 = float(input("Ingrese el valor x0:  \t"))
-                            x1 = float(input("Ingrese el valor x1:  \t"))
+                            print("Ingrese el valor del intervalo a evaluar ")
+                            x0 = float(input("Ingrese el valor x0: "))
+                            x1 = float(input("Ingrese el valor x1: "))
 
                             # Creando la tabla de datos
                             xm = (x0 + x1) / 2
@@ -253,7 +306,7 @@ class Un3:
 
                             opcion = input("****  ¿Desea evaluar algun punto en X?\n1. Si \n2. No")
                             if opcion == 1:
-                                x = float(input("Ingrese el valor de x \t"))
+                                x = float(input("Ingrese el valor de x "))
                                 px = eval(str(polisimple))
                                 print("valor evaluado es: ", px)
                             if opcion == 2:
@@ -410,4 +463,4 @@ class Un3:
                 break
 
             metodo = int(input("\x1b[3;35m"+"Ingrese el numero del metodo por el que desea aproximar la raiz\n1.Interpolación de Lagrange\n2.Interpolación del polinomio de Newton"
-                "\n3.Diferencias Divididas\n4.pol de Hermite\nOtro numero para salir "+"\x1b[0;30m"))
+                "\n3.Diferencias Divididas\n4.Polinomio de Hermite\nOtro numero para salir "+"\x1b[0;30m"))
