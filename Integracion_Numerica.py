@@ -19,7 +19,7 @@ def Integracion():
                     # Definimos nuestra variable independiente
                     x = sympy.symbols('x')
                     # Solicitamos al usuario que ingrese la funcion
-                    Fx = input("Ingrese la funcion en terminos de x ")
+                    Fx = input("Ingrese la funcion en terminos de x\nf(x): ")
                     # Pedimos el extremo inferior del intervalo
                     a = int(input("Ingrese el valor de a "))
                     # Pedimos el extremo superior del intervalo
@@ -46,7 +46,7 @@ def Integracion():
                     # definimos la variable independiente
                     x = sympy.symbols('x')
                     # Pedimos al usuario la funcion
-                    Fx = input("Ingrese la funcion en terminos de x ")
+                    Fx = input("Ingrese la funcion en terminos de x\nf(x): ")
                     # Solicitamos el valor inferior del intervalo
                     a = int(input("Ingrese el valor de a "))
                     # Solicitamos el valor superior del intervalo
@@ -96,7 +96,7 @@ def Integracion():
                     # Definimos nuestra variable independiente
                     x = sympy.symbols('x')
                     # Solicitamos al usuario que ingrese la funcion
-                    Fx = input("Ingrese la funcion en terminos de x ")
+                    Fx = input("Ingrese la funcion en terminos de x\nf(x): ")
                     # Pedimos el extremo inferior del intervalo
                     a = int(input("Ingrese el valor de a "))
                     # evaluamos el intervalo inferior en la funcion
@@ -128,7 +128,7 @@ def Integracion():
                     # definimos la variable independiente
                     x = sympy.symbols('x')
                     # Pedimos al usuario la funcion
-                    Fx = input("Ingrese la funcion en terminos de x ")
+                    Fx = input("Ingrese la funcion en terminos de x\nf(x): ")
                     # Solicitamos el valor inferior del intervalo
                     a = int(input("Ingrese el valor de a "))
                     # Solicitamos el valor superior del intervalo
@@ -201,7 +201,7 @@ def Integracion():
                     # definimos la variable independiente
                     x = sympy.symbols('x')
                     # Pedimos al usuario la funcion
-                    Fx = input("Ingrese la funcion en terminos de x ")
+                    Fx = input("Ingrese la funcion en terminos de x\nf(x): ")
                     # Solicitamos el valor inferior del intervalo
                     a = int(input("Ingrese el valor de a "))
                     # Solicitamos el valor superior del intervalo
@@ -253,7 +253,7 @@ def Integracion():
                     # definimos la variable independiente
                     x = sympy.symbols('x')
                     # Pedimos al usuario la funcion
-                    Fx = input("Ingrese la funcion en terminos de x ")
+                    Fx = input("Ingrese la funcion en terminos de x\nf(x): ")
                     # Solicitamos el valor inferior del intervalo
                     a = int(input("Ingrese el valor de a "))
                     # Solicitamos el valor superior del intervalo
@@ -328,8 +328,7 @@ def Integracion():
                 print(' '.join('%11.20f' % x for x in lst))
 
             def romberg(f, a, b, eps=1E-8):
-                """Approximate the definite integral of f from a to b by Romberg's method.
-                eps is the desired accuracy."""
+
                 R = [[0.5 * (b - a) * (f(a) + f(b))]]  # R[0][0]
                 print_row(R[0])
                 n = 1
