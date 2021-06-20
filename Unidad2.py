@@ -26,7 +26,6 @@ class Un2:
                     x = np.linspace(-3, 3)
                     #creamos la variable ejey que almacenara los valores de la funcion evaluada en x
                     ejey = eval(fx)
-
                     #creamos una cuadricula en nuestra grafica
                     plt.grid()
                     #Le ponemos titulo a nuestra grafica
@@ -41,7 +40,6 @@ class Un2:
                     plt.plot(x, ejey)
                     #Mostramos nuestra grafica
                     plt.show()
-
 
                 # Si la opcion es 2 Biseccion
                 elif metodo == 2:
@@ -193,6 +191,40 @@ class Un2:
                     else:
                         print("\x1b[1;31m"+"No posee convergencia en el punto proporcionado"+"\x1b[0;30m")
 
+                #Si la opcion es 5 Newton raphson
+                elif metodo==5:
+                    cifras = -1
+                    ea = 1000
+                    Xn = 0
+                    # se declara a "x" como simbolo en las funciones que ingrese el usuario
+                    x = sp.symbols("x")
+                    # se calcula la primer derivada
+                    dfx = sp.diff(fx)
+                    # se muestra la derivada de la funcion
+                    print("\x1b[0;30m"+"f'(x)= ", dfx)
+                    # el metodo de newton exige un valor incial, aca se pide este valor incial
+                    Xn = float(input("digite el valor inicial "))
+                    # i=1, esto es quivalente a iteracion
+                    i = 1
+                    # en este metodo while se lleva acabo el proceso para calcular la raiz
+                    while (ea > tolerancia):
+                        print("iteracion ", i)
+                        print("Xn, ", Xn)
+                        # se calcula la evaluacion de Xn en la funcion fx
+                        fXn = sp.sympify(fx).subs(x, Xn)
+                        print("fXn ", fXn)
+                        # se calcula ñla evaluacion de Xn en la derivada de la funcion
+                        dfXn = sp.sympify(dfx).subs(x, Xn)
+                        print("f'(Xn)= ", dfXn)
+                        # ecuacion para obtener la aproximacion de la raiz a traves del metodo de newton
+                        aprox = Xn - ((fXn) / (dfXn))
+                        print("Xn+1 ", aprox)
+                        # calculamos el error
+                        ea = abs(((aprox - Xn) / aprox) * 100)
+                        print("ea= ", ea)
+                        # ahora Xn=aprox
+                        Xn = aprox
+                        # incrementamos el valor de i
 
                 #Si la opcion es 6 Secante
                 elif metodo==6:

@@ -55,20 +55,20 @@ while menu > 0 or menu < 6:
 
     # OPCION 2
     elif menu == 2:
-        try:
-            # Pedimos al usuario el numero de cifras significativas
-            cifras = int(input("Cuantas cifras significativas desea "))
-            if cifras >= 0:
-                # Calculamos el error Es
-                tolerancia = 0.5 * (10 ** (2 - cifras))
+        #try:
+        # Pedimos al usuario el numero de cifras significativas
+        cifras = int(input("Cuantas cifras significativas desea "))
+        if cifras >= 0:
+            # Calculamos el error Es
+            tolerancia = 0.5 * (10 ** (2 - cifras))
 
-                # Creamos una nueva instancia de la clase unidad 1
-                Unidad2 = Un2.U2(tolerancia)
-            else:
-                print("\x1b[1;31m" + "Ingrese un numero valido" + "\x1b[1;31m")
-
-        except:
+            # Creamos una nueva instancia de la clase unidad 1
+            Unidad2 = Un2.U2(tolerancia)
+        else:
             print("\x1b[1;31m" + "Ingrese un numero valido" + "\x1b[1;31m")
+
+        #except:
+            #print("\x1b[1;31m" + "Ingrese un numero valido" + "\x1b[1;31m")
 
     # OPCION 3
     elif menu == 3:
