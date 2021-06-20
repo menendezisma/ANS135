@@ -13,7 +13,7 @@ class Un2:
         #Solicitamos al usuario que ingresa la funcion exponencial
         fx = input("\x1b[1;33m"+"Introduce la funcion exponencial en terminos de x "+"\x1b[1;36m")
         #Validamos que en realidad se trate de una funcion exponencial
-        if "**x" in fx or "exp(" in fx or "**-x" in fx:
+        if "**x" in fx or "exp(-x" in fx or "exp(-x" in fx or "**-x" in fx:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
             metodo = int(input("\x1b[3;36m"+
                 "Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"

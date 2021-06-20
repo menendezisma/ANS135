@@ -182,15 +182,23 @@ class Un3:
                 Fx = []
                 #Pedimos que ingrese el grado del polinomio a calcular
                 n = int(input("\x1b[0;31m" + "Ingrese el grado del polinomio "))
+                #Recordamos al usuario que necesitamos n+1 puntos
                 print("\x1b[1;33m"+"Recuerde que para un polinomio de grado n, necesitamos n+1 puntos ")
+                #Esperamos un tiempo
                 time.sleep(2)
+                #Creamos una lista vacia
                 data = []
                 #Solicitamos los datos
                 for i in range(n+1):
+                    #Empezamos a pedir los datos de x
                     x = float(input("\x1b[1;32m" + "Ingrese los valores de x "))
+                    #Almacenamos estos valores en la lista
                     X.append(x)
+                    # Empezamos a pedir los datos de fx
                     y = float(input("\x1b[1;33m" + "Ingrese los valores de Fx "))
+                    # Almacenamos estos valores en la lista
                     Fx.append(y)
+                    #
                     data.append([x, y])
 
                 # Tabla de Diferencias Divididas Avanzadas

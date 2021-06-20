@@ -315,6 +315,7 @@ def Integracion():
                               S13C,
                               "\x1b[0;30m")
                     else:
+                        #si a es mayor o igual a b mandamos al usuario el mensaje
                         print("\x1b[1;31m" + "¡Ingrese un intervalo valido!" + "\x1b[0;30m")
 
                 else:

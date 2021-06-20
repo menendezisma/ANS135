@@ -243,32 +243,44 @@ class Un5:
 
             elif opc==3:
                 #Metodo de Runge Kutta para orden 4
+                #Definimos nuestras variables
                 x,y=symbols("x y")
-
+                #Mediante un try/except tratamos cualquier error
                 try:
+                    #Solicitamos al usuario que ingrese la funcion
                     fn=eval(input("\x1b[0;30m"+"Ingrese la funcion f(x,y): "))
+                    #Mostramos para verificar que es correcta
                     print(fn)
-                    # Por definicion n=4
+                    #Solicitamos los valores iniciales de x e y
                     x0 = float(input("Ingrese el valor incial de x0: "))
                     y0 = float(input("Ingrese el valor incial de y0: "))
+                    #creamos un ciclo while para que el usuario ingrese el valor de h
                     while True:
+                        #Solicitamos el valor de h
                         h = float(input("Ingrese el tamaño de paso h: "))
+                        #Verificamos que el valor sea correcto
                         if h <= 0:
+                            # si el valor no es correcto devolvemos el siguiente mensaje
                             print("El tamaño de paso no puede cer cero o negativo")
                         else:
-
+                            #de lo contrario cerramos nuestro ciclo y seguimos con los calculos
                             break
+                    #Pedimos el valor a calcular
                     xn = float(input("Ingrese el valor a calcular y(xn): "))
+                    #calculamos el numero de iteraciones
                     itc = round(((xn - x0) / h))
-                    vx = []
-                    vy = []
+                    #Indicamos al usuario que imprimiremos lo valores
                     print("--------- Tabla de valores ---------")
+                    #Creamos un bucle for para calcular los valores
                     for i in range(1, itc + 1):
+                        #Calculamos los valores de ki
                         k1 = fn.subs([(x, x0), (y, y0)])
                         k2 = fn.subs([(x, x0 + h / 2), (y, y0 + (h / 2) * k1)])
                         k3 = fn.subs([(x, x0 + h / 2), (y, y0 + (h / 2) * k2)])
                         k4 = fn.subs([(x, x0 + h), (y, y0 + h * k3)])
+                        #Despues de haber calculado los valores de ki calculamos el valor de la aproximacion
                         yn = y0 + h / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
+                        #calculamos el valor de x para las demas iteraciones
                         x0 = round(x0 + h, 5)
                         y0 = yn
                         # Imprimimos todos los valores al usuario
