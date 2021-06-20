@@ -20,7 +20,6 @@ class Un2:
                 "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Bairstow\n9.Müller\nOtro numero para salir\n"+"\x1b[1;36m"))
 
             while metodo > 0 and metodo < 10:
-
                 #Si la opcion es 1 Grafico
                 if metodo == 1:
                     #Definimos el rango de datos a evaluar la funcion
@@ -106,7 +105,7 @@ class Un2:
                         #Imprimimos la tabla
                     print(tabulate(data, headers=["It", "x1", "x2", "xr", "F(x1)", "F(xr)", "F(x1)*F(xr)", "Ea"], tablefmt="github"))
 
-                #Si la opcion es 3 punto fijo
+                #Si la opcion es 3 falsa posicion
                 elif metodo==3:
                     oncemore = iter([True, False])
                     data = []
@@ -152,6 +151,7 @@ class Un2:
                     else:
                         print("\x1b[1;31m"+"No existe solucion en dicho intervalo"+"\x1b[0;30m")
 
+                #Si la opcion es 4 punto fijo
                 elif metodo==4:
                     x = sp.Symbol('x')
                     oncemore = iter([True, False])

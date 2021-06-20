@@ -6,12 +6,6 @@ import numpy as np
 from tabulate import tabulate
 from matplotlib import pyplot as plt
 
-''' 
-Va=Valor actual
-Vp= Valor Pasado
-Ea=Error absoluto
-'''
-
 #Creamos la clase Un1
 class Un1:
     #Creamos la funcion U1 y le pasamos los argumentos opcion y tol
@@ -21,6 +15,11 @@ class Un1:
             return abs((vp - va) / vp) * 100
 
         # Funcion tabular
+        ''' 
+        Va=Valor anterior
+        Vp= Valor presente
+        Ea=Error absoluto
+        '''
         def tabular(va, vp, it, toleran=tol):
             while Ea(va, vp) > toleran or next(oncemore):
                 #Creamos una tabla y le mandamos los datos
@@ -346,28 +345,40 @@ class Un1:
                 # Mostramos la grafica al usuario
                 plt.show()
 
-                cifras=-1
-                ea=1000
-
+                # establecemos dos variables en un inicio cada una se iguala a un valor numerico
+                # posteriormente este valor se cambia
+                cifras = -1
+                ea = 1000
+                # se pide el valor de x, con el cual se evaluara la funcion
                 x = float(input("ingrese el valor de x, intervalo ]-1,1[ "))
+                # la funcion tiene como condicion un intervalo ]-1,1[
+                # en este bucle se valida que el numero que se ingrese este en el intervalo dado
                 while (x <= -1 or x >= 1):
-                    print("\x1b[1;31m" +"ha ingresado un numero que no se encuentra en el intervalo "+"\x1b[0;30m")
-                    x = float(input("Ingrese el valor de x "))
+                    print("ha ingresado un numero que no se encuentra en el intervalo")
+                    x = float(input("ingrese el valor de x, intervalo ]-1,1[ "))
 
+                    # aca se incializa la aproximacion
                 aprox = x + ((1 / 2) * (((x) ** 3) / 3))
+                # establecemos n=2, importante para la aproximacion
                 n = 2
-
                 while (ea > tol):
+                    # la variable ant se iguala a la variable aprox, esto servira para el calculo del Ea
                     ant = aprox
-                    aprox = aprox + (((math.factorial(2 * n)) / (((2 ** n) * math.factorial(n)) ** 2)) * ((x ** ((2 * n) + 1)) / ((2 * n) + 1)))
+                    # la aproximacion cambiara de valor, este valor viene dado a traves de serie de taylor
+                    aprox = aprox + (((math.factorial(2 * n)) / (((2 ** n) * math.factorial(n)) ** 2)) * (
+                                (x ** ((2 * n) + 1)) / ((2 * n) + 1)))
+                    # se calcula el error
                     ea = abs(((aprox - ant) / aprox) * 100)
+                    # la siguientes lineas son para mostrar los valores que resultan en cada iteracion
                     print("iteracion ", n)
                     print("valor aproximado ", aprox)
                     print("error aproximado ", ea)
+                    # se incrementa el valor de "n" en 1
                     n = n + 1
-
+                # se muestran resultados
                 print("el valor es: ", aprox)
                 print("el error es: ", ea)
+
 
             # Si la opcion elejida fue 9
             elif opcion == 9:
@@ -394,7 +405,7 @@ class Un1:
                 plt.show()
 
                 # Pedimos al usuario el valor de x
-                x = float(input("Cual es el valor de x? \n"))
+                x = float(input("Cual es el valor de x entre ]-1,1[ \n"))
                 if not (-1 < x < 1):
                     # Si el numero no se encuentra en el intervalo dado devuelve el mensaje
                     print("El valor de \"x\" tiene que ser mayor a -1 y menor a 1")
@@ -441,7 +452,7 @@ class Un1:
                 plt.show()
 
                 # Pedimos al usuario el valor de x
-                x = float(input("Cual es el valor de x? \n"))
+                x = float(input("Cual es el valor de x entre ]-1,1[ \n"))
                 if not (-1 < x < 1):
                     # Si el valor no esta en el intervalo dado devuelve el mensaje
                     print("El valor de \"x\" tiene que ser mayor a -1 y menor a 1")
@@ -488,7 +499,7 @@ class Un1:
                 plt.show()
 
                 # Pedimos al usuario el valor de x
-                x = float(input("Cual es el valor de x? \n"))
+                x = float(input("Cual es el valor de x entre ]-1,1[ \n"))
                 if not (-1 < x < 1):
                     # Si el valor no es el esperado devulve el mensaje
                     print("El valor de \"x\" tiene que ser mayor a -1 y menor a 1")
@@ -511,6 +522,6 @@ class Un1:
                 tabular(va, vp, it)
 
             else:
-                break;
+                break
 
             opcion = int(input("\x1b[3;32m" + "Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\n12.Limpiar consola\nOtro numero para salir " + "\x1b[0;30m"))

@@ -12,39 +12,80 @@ class Un5:
 
         while opc > 0 and opc < 5:
             if opc==1:
-                #Metod Euler mejorado
-                x,y = symbols("x y")
-                try:
-                    fn = eval(input("\x1b[0;30m"+"Ingrese la funcion f(x,y): "))
-                    print(fn)
-                    x0 = float(input("Ingrese el valor incial de x0: "))
-                    y0 = float(input("Ingrese el valor incial de y0: "))
-                    # Creamos un bucle para pedir le al usuario el valor de h y que sea valido
+                euler=int(input("1.Euler hacia adelante\n2.Euler hacia atras\n3.Euler centrado\n4.Euler modificado\nOtro numero para salir "))
+                while euler > 0 and euler < 5:
+                    if euler==1:
+                        # Metod Euler mejorado
+                        x, y = symbols("x y")
+                        try:
+                            fn = eval(input("\x1b[0;30m" + "Ingrese la funcion f(x,y): "))
+                            print(fn)
+                            x0 = float(input("Ingrese el valor incial de x0: "))
+                            y0 = float(input("Ingrese el valor incial de y0: "))
+                            # Creamos un bucle para pedir le al usuario el valor de h y que sea valido
 
-                    while True:
-                        h = float(input("Ingrese el tamaño de paso h: "))
-                        if h <= 0:
-                            print("El tamaño de paso no puede cer cero o negativo")
-                        else:
-                            break
+                            while True:
+                                h = float(input("Ingrese el tamaño de paso h: "))
+                                if h <= 0:
+                                    print("El tamaño de paso no puede cer cero o negativo")
+                                else:
+                                    break
 
-                    xn = float(input("Ingrese el valor a calcular y(xn): "))
-                    itc = round(((xn - x0) / h))
-                    vx = []
-                    vy = []
-                    print("--------- Tabla de valores ---------")
-                    for i in range(1, itc + 1):
-                        f1 = fn.subs([(x, x0), (y, y0)])
-                        u = y0 + h * f1
-                        f2 = fn.subs([(x, x0 + h), (y, u)])
-                        yn = y0 + h * ((f1 + f2) / 2)
-                        x0 = round(x0 + h, 5)
-                        y0 = yn
-                        print("\x1b[1;35m"+'y(', x0, ')=', yn)
-                    print("\nValor aproximado: ", yn)
+                            xn = float(input("Ingrese el valor a calcular y(xn): "))
+                            itc = round(((xn - x0) / h))
+                            vx = []
+                            vy = []
+                            print("--------- Tabla de valores ---------")
+                            for i in range(1, itc + 1):
+                                x[i]
+                                yn = y0 + h * ((f1 + f2) / 2)
+                                x0 = round(x0 + h, 5)
+                                y0 = yn
+                                print("\x1b[1;35m" + 'y(', x0, ')=', yn)
+                            print("\nValor aproximado: ", yn)
 
-                except:
-                    print("\x1b[1;31m"+"La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion "+"\x1b[1;31m")
+                        except:
+                            print(
+                                "\x1b[1;31m" + "La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion " + "\x1b[1;31m")
+
+                    elif euler==4:
+                        # Metod Euler mejorado
+                        x, y = symbols("x y")
+                        try:
+                            fn = eval(input("\x1b[0;30m" + "Ingrese la funcion f(x,y): "))
+                            print(fn)
+                            x0 = float(input("Ingrese el valor incial de x0: "))
+                            y0 = float(input("Ingrese el valor incial de y0: "))
+                            # Creamos un bucle para pedir le al usuario el valor de h y que sea valido
+
+                            while True:
+                                h = float(input("Ingrese el tamaño de paso h: "))
+                                if h <= 0:
+                                    print("El tamaño de paso no puede cer cero o negativo")
+                                else:
+                                    break
+
+                            xn = float(input("Ingrese el valor a calcular y(xn): "))
+                            itc = round(((xn - x0) / h))
+                            vx = []
+                            vy = []
+                            print("--------- Tabla de valores ---------")
+                            for i in range(1, itc + 1):
+                                f1 = fn.subs([(x, x0), (y, y0)])
+                                u = y0 + h * f1
+                                f2 = fn.subs([(x, x0 + h), (y, u)])
+                                yn = y0 + h * ((f1 + f2) / 2)
+                                x0 = round(x0 + h, 5)
+                                y0 = yn
+                                print("\x1b[1;35m" + 'y(', x0, ')=', yn)
+                            print("\nValor aproximado: ", yn)
+
+                        except:
+                            print("\x1b[1;31m" + "La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion " + "\x1b[1;31m")
+
+                    else:
+                        break
+                    euler = int(input("1.Euler hacia adelante\n2.Euler hacia atras\n3.Euler centrado\n4.Euler modificado\nOtro numero para salir "))
                 break
             elif opc==2:
                 def edo_taylor3t(d1y, d2y, x0, y0, h, muestras):
@@ -143,6 +184,8 @@ class Un5:
                         y0 = yn
                         print("\x1b[1;35m"+'y(', x0, ')=', yn)
                     print("\nValor aproximado: ", yn)
+                    break
+
                 except:
                     print("\x1b[1;31m"+"La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion "+"\x1b[1;31m")
                 break
