@@ -172,8 +172,8 @@ class Un5:
                             # De haber un error le avisamos al usuario
                             print("\x1b[1;31m" + "La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion " + "\x1b[1;31m")
 
-                    else:
-                        break
+                        else:
+                            break
                     euler = int(input("1.Euler hacia adelante\n2.Euler hacia atras\n3.Euler centrado\n4.Euler modificado\nOtro numero para salir "))
                 break
             elif opc==2:
