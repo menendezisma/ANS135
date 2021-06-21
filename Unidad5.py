@@ -1,8 +1,6 @@
 import numpy as np
 from tabulate import tabulate
 from sympy import *
-from matplotlib import pyplot
-from math import *
 
 #Creamos la clase Un5
 class Un5:
