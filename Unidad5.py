@@ -101,18 +101,14 @@ class Un5:
                                 u = y0 + h * f1
                                 #Evaluamos X0+h y u en la funcion para encontrar Yi
                                 f2 = fn.subs([(x, x0 + h), (y, u)])
-                                u2 = y0 + h * f2
-                                print(u)
-                                print(x0+h)
-                                print(u2)
+                                yn = y0 + h * f2
                                 # Calculamos el valor de la aprocimacion
-                                yn = y0 + h * (f1 + f2)
                                 x0 = round(x0 + h, 5)
                                 y0 = yn
                                 # Imprimimos todos los valores al usuario
                                 print("\x1b[1;35m" + 'y(', x0, ')=', yn)
                             # Cuando finalizamos indicamos al usuario cual es la respuesta
-                            print("\nValor aproximado: ", yn)
+                            print("\x1b[1;34m"+"\nValor aproximado: ", yn,"\x1b[3;35m")
 
                         except:
                             # De haber un error le avisamos al usuario
