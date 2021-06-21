@@ -3,7 +3,6 @@ import sympy as sym
 import numpy as np
 from tabulate import tabulate
 import matplotlib.pyplot as plt
-import os
 
 #Creamos la clase Un3
 class Un3:
@@ -43,7 +42,6 @@ class Un3:
                             fi.append(datoFi)
                             # Guardamos nuestros datos en la lista correspondiente
                             data.append([datoXi, datoFi])
-                        os.system("cls")
                         print(tabulate(data, headers=["x", "y"], tablefmt="pretty"))
 
                         #Empezamos a calcular
@@ -60,8 +58,8 @@ class Un3:
                         funcion = " ", polSimp
                         print("pol: \n", pol)
                         print("\npol Simple: \n", polSimp)
-
                         break
+
                     elif opc==2:
                         #Declaro las listas necesarias
                         data = []
@@ -70,12 +68,12 @@ class Un3:
                         #Declaro la variable a utilizar
                         x = sym.Symbol('x')
                         y = 0
-                        numerador = 1
-                        denominador = 1
+                        num = 1
+                        denom = 1
                         polinomio = 0
 
                         #Solicito al usuario que ingrese la funcion
-                        funcion = input("Ingrese la funcion en terminos de x\nf(x): ")
+                        funcion = input("Ingrese la funcion en terms de x\nf(x): ")
                         lista = funcion.split()
                         for i in lista:
                             # Solicitando datos al usuario para la funcion
@@ -105,18 +103,18 @@ class Un3:
 
                             # procedimiento de Langrage
                             for y in range(0, nDatos, 1):
-                                numerador = 1
-                                denominador = 1
+                                num = 1
+                                denom = 1
                                 for j in range(0, nDatos, 1):
                                     if y != j:
-                                        numerador = numerador * (x - xi[j])
-                                        denominador = denominador * (xi[y] - xi[j])
-                                    termino = (numerador / denominador) * fi[y]
-                                polinomio = polinomio + termino
-                            polinomioSimple = sym.expand(polinomio)
-                            funcion = " ", polinomioSimple
+                                        num = num * (x - xi[j])
+                                        denom = denom * (xi[y] - xi[j])
+                                    term = (num / denom) * fi[y]
+                                polinomio = polinomio + term
+                            polSim = sym.expand(polinomio)
+                            funcion = " ", polSim
                             print("polinomio: \n", polinomio)
-                            print("\npolinomio Simple: \n", polinomioSimple)
+                            print("\npolinomio Simple: \n", polSim)
                     else:
                         break
 
@@ -215,12 +213,12 @@ class Un3:
                         xi = []
                         fi = []
                         y = 0
-                        numerador = 1
-                        denominador = 1
+                        num = 1
+                        denom = 1
                         polinomio = 0
 
                         #Solicitamos al ususario que ingrese la funcion
-                        funcion = input("Ingrese la funcion en terminos de x\nf(x): ")
+                        funcion = input("Ingrese la funcion en terms de x\nf(x): ")
                         lista = funcion.split()
                         for i in lista:
                             # Solicitando datos al usuario para la funcion
@@ -264,9 +262,9 @@ class Un3:
                                 i = 0
                                 # paso = j-2 # inicia en 1
                                 while (i < diagonal):
-                                    denominador = (xi[i + (j - 2)] - xi[i])
-                                    numerador = data[i + 1, j - 1] - data[i, j - 1]
-                                    data[i, j] = numerador / denominador
+                                    denom = (xi[i + (j - 2)] - xi[i])
+                                    num = data[i + 1, j - 1] - data[i, j - 1]
+                                    data[i, j] = num / denom
                                     i = i + 1
                                     diagonal = diagonal - 1
                                     j = j + 1
@@ -280,10 +278,10 @@ class Un3:
                             polinomio = fi[0]
                             for j in range(1, n, 1):
                                 factor = dDividida[j - 1]
-                                termino = 1
+                                term = 1
                                 for k in range(0, j, 1):
-                                    termino = termino * (x - xi[k])
-                                polinomio = polinomio + termino * factor
+                                    term = term * (x - xi[k])
+                                polinomio = polinomio + term * factor
 
                             # simplifica multiplicando entre (x-xi)
                             polisimple = polinomio.expand()
@@ -408,57 +406,131 @@ class Un3:
 
             # Opcion 4 Interpolacion de Hermite
             elif metodo == 4:
-                #Solicitamos el usuario la funcion
-                fn = input("Ingrese la funcion en terminos de x\nf(x): ")
-                dfn=sym.diff(fn)
-
-                #Imprimimos la funcion y su derivada
-                print("f(x)= ", fn)
-                print("f'(x)= ", dfn)
-                #creamos dos listas vacias para guardar los datos
-                X = []
-                Fx = []
-                #Pedimos que ingrese el grado del pol a calcular
-                n = int(input("\x1b[0;31m" + "Ingrese el grado del pol "))
-                #Recordamos al usuario que necesitamos n+1 puntos
-                print("\x1b[1;33m"+"Recuerde que para un pol de grado n, necesitamos n+1 puntos ")
-                #Esperamos un tiempo
-                time.sleep(2)
-                #Creamos una lista vacia
+                #Calculamos el polinomio de hermite por medio de las derivadas por posicion
+                #Creamos las listas que vamos a utilizar
                 data = []
-                #Solicitamos los datos
-                for i in range(n+1):
-                    #Empezamos a pedir los datos de x
-                    x = float(input("\x1b[1;32m" + "Ingrese los valores de x "))
-                    #Almacenamos estos valores en la lista
-                    X.append(x)
-                    # Empezamos a pedir los datos de fx
-                    y = float(input("\x1b[1;33m" + "Ingrese los valores de Fx "))
-                    # Almacenamos estos valores en la lista
-                    Fx.append(y)
-                    #
-                    data.append([x, y])
+                xi = []
+                fi = []
+                fk = []
+                lx = []
+                derivada = []
+                evaluado = []
+                expresionElevada = []
+                Hn = []
+                Kn = []
+                #Creamos un lista con los nombres de los titulos
+                titulo = ["k", "Xk", "f(Xk)", "f'(k)"]
+                #Declaramos la variable a utilizar
+                x = sym.Symbol('x')
+                y = 0
+                num = 1
+                denom = 1
+                polinomio = 0
+                #Pedimos al usuario que ingrese la cantidad de datos
+                nDatos = int(input("Ingrese la cantidad de datos "))
+                #Solicitamos que ingrese la cantidad de derivadas
+                nDerivada = int(input("Ingrese la cantidad de derivada "))
+                for i in range(nDatos):
+                    #Pedimos al usuario que ingrese los datos y los almacenamos en las listas
+                    datoXi = float(input("Ingrese el dato numero x{}: ".format(i)))
+                    xi.append(datoXi)
+                    datoFi = float(input("Ingrese el dato numero y{}: ".format(i)))
+                    fi.append(datoFi)
+                    datoFk = float(input("Ingrese el dato numero f'{}: ".format(i)))
+                    fk.append(datoFk)
+                    data.append([i, datoXi, datoFi, datoFk])
+                print(tabulate(data, headers=titulo, tablefmt="pretty"))
+                # Utilizando el metodo de lagrange
+                for y in range(0, nDatos, 1):
+                    num = 1
+                    denom = 1
+                    for j in range(0, nDatos, 1):
+                        if y != j:
+                            num = num * (x - xi[j])
+                            denom = denom * (xi[y] - xi[j])
+                        term = (num / denom)
+                    lx.append(term)
+                    polinomio = polinomio + term
 
-                # Tabla de Diferencias Divididas Avanzadas
-                n = len(X)
+                # Imprimiendo los datos de L + calculando su derivada
+                print("\n------ Encontrado el valor de L(n,j) ------")
+                for z in range(len(lx)):
+                    #Imprimimoso el valor de L al usuario
+                    print("L{}: ".format(z), lx[z])
+                    y = lx[z]
+                    deri = y.diff(x)
+                    derivada.append(deri)
+                    print("L'{}: ".format(z), derivada[z])
 
-                # diferencias divididas vacia
-                dfinita = np.zeros(shape=(n, n), dtype=float)
-                data = np.concatenate((data, dfinita), axis=1)
-                indice=0
-                while indice<n:
-                    b0=Fx[0]
-                    b1=(Fx[indice+1]-Fx[indice])/(X[indice+1]-X[indice])
-                    print(b1)
-                    indice+=1
+                print("\n------ Evaluando los valores de x en derivada ------")
+                # Evaluando los valores de x en derivada
+                for t in range(len(lx)):
+                    exp = derivada[t]
+                    x = xi[t]
+                    evaluacion = eval(str(exp))
+                    evaluado.append(evaluacion)
+                    #imprimimos el valor de L
+                    print("L'{}(".format(z), x, "): ", evaluacion)
+                # Encontramos los valores de L
+                print("\n------ El valor de ln ------")
+                for u in range(len(lx)):
+                    lCuadrado = (lx[u]) ** 2
+                    elevado = lCuadrado.expand()
+                    expresionElevada.append(elevado)
 
-                print("\x1b[1;34m")
-                print(X)
-                print("\x1b[1;36m",end='')
-                print(Fx)
-                print("\x1b[1;30m")
-                print(tabulate(data, headers=["x", "f(x)",""], tablefmt="pretty"))
-                break
+                    print("(L{})^2:".format(u), expresionElevada[u])
+                # Encontramos los valor de H
+                print("\n------ Los valores H(n,j) ------")
+                for q in range(len(lx)):
+                    #definimos nuestra variable
+                    x = sym.Symbol('x')
+                    lCuadrado = expresionElevada[q]
+                    lEvaluado = evaluado[q]
+                    formu = (1 - 2 * (lEvaluado) * (x - xi[q]))
+                    poly = (lCuadrado * formu)
+                    expre = poly.expand()
+                    Hn.append(expre)
+                    #imprimimos los valores de H(n,j)
+                    print("H{}(x)=".format(q), Hn[q])
+
+                # Encontramos los valores de K
+                print("\n------ Encontrado los valores Kn ------")
+                for r in range(len(lx)):
+                    x = sym.Symbol('x')
+                    lCuadrado = expresionElevada[r]
+                    formu = ((x - xi[r]))
+                    poly = (lCuadrado * formu)
+                    expre = poly.expand()
+                    Kn.append(expre)
+                    #Imprimimos los valores de K
+                    print("K{}(x)=".format(r), Kn[r])
+
+                #Una ves teniendo todos los valores
+                print("\n------ Calculando el polinomio ------")
+                termino = 1
+                pol = 0
+                for g in range(len(lx)):
+                    primerTermino = (fi[g] * Hn[g])
+                    segundoTermino = (fk[g] * Kn[g])
+                    print(primerTermino)
+                    print(segundoTermino)
+                    formu = primerTermino + segundoTermino
+                    print("formula: ", formu)
+                    termino = termino + formu
+                pol = pol + termino
+                poliSim = sym.expand(pol)
+                funcion = " ", poliSim
+                print("polinomio: \n", polinomio)
+                print("\npolinomio Simple: \n", poliSim)
+
+                opcion = input("****  ¿Desea evaluar algun punto en X?\n1. Si \n2. No\n")
+                if opcion == '1':
+                    x = float(input("Ingrese el valor de x \t"))
+                    px = eval(str(polSim))
+                    print("valor evaluado es: ", px)
+                if opcion == 2:
+                    print("Programa finalizado")
+                    break
             else:
                 break
 
