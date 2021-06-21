@@ -172,7 +172,7 @@ def Diferenciacion():
                                 eSegunda = abs((der2 - segunda) / der2) * 100
                                 eTercera = abs((der3 - tercera) / der3) * 100
                                 eCuarta = abs((der4 - cuarta) / der4) * 100
-                                print("Para primer diferencia hacia adelante con: x=" + str(xi) + " y h=" + str(
+                                print("Para segunda diferencia hacia adelante con: x=" + str(xi) + " y h=" + str(
                                     h) + " se obtuvo:")
                                 # Imprimo los valores en la tabla creada
                                 data.append(["Segunda", segunda, eSegunda])
@@ -195,7 +195,7 @@ def Diferenciacion():
                                 eSegunda = abs((der2 - segunda) / der2) * 100
                                 eTercera = abs((der3 - tercera) / der3) * 100
                                 eCuarta = abs((der4 - cuarta) / der4) * 100
-                                print("Para primer diferencia hacia adelante con: x=" + str(xi) + " y h=" + str(
+                                print("Para primer diferencia hacia atrás con: x=" + str(xi) + " y h=" + str(
                                     h) + " se obtuvo:")
                                 # Imprimo los valores en la tabla creada
                                 data.append(["Segunda", segunda, eSegunda])
@@ -213,7 +213,7 @@ def Diferenciacion():
                                 eSegunda = abs((der2 - segunda) / der2) * 100
                                 eTercera = abs((der3 - tercera) / der3) * 100
                                 eCuarta = abs((der4 - cuarta) / der4) * 100
-                                print("Para primer diferencia hacia adelante con: x=" + str(xi) + " y h=" + str(
+                                print("Para segunda diferencia hacia atrás con: x=" + str(xi) + " y h=" + str(
                                     h) + " se obtuvo:")
                                 # Imprimo los valores en la tabla creada
                                 data.append(["Segunda", segunda, eSegunda])
@@ -239,7 +239,7 @@ def Diferenciacion():
                                 eSegunda = abs((der2 - segunda) / der2) * 100
                                 eTercera = abs((der3 - tercera) / der3) * 100
                                 eCuarta = abs((der4 - cuarta) / der4) * 100
-                                print("Para primer diferencia hacia adelante con: x=" + str(xi) + " y h=" + str(
+                                print("Para primer diferencia central con: x=" + str(xi) + " y h=" + str(
                                     h) + " se obtuvo:")
                                 # Imprimo los valores en la tabla creada
                                 data.append(["Segunda", segunda, eSegunda])
@@ -258,7 +258,7 @@ def Diferenciacion():
                                 eSegunda = abs((der2 - segunda) / der2) * 100
                                 eTercera = abs((der3 - tercera) / der3) * 100
                                 eCuarta = abs((der4 - cuarta) / der4) * 100
-                                print("Para primer diferencia hacia adelante con: x=" + str(xi) + " y h=" + str(
+                                print("Para segunda diferencia central con: x=" + str(xi) + " y h=" + str(
                                     h) + " se obtuvo:")
                                 # Imprimo los valores en la tabla creada
                                 data.append(["Segunda", segunda, eSegunda])
