@@ -357,11 +357,10 @@ class Un5:
                     # Devolvemos la respuesta al usuario
                     print("\x1b[1;34m" + "\nLa respuesta a traves del metodo de multipasos es: ", Ry4)
                     print("\x1b[3;35m")
-                    break
                 except:
                     # De haber un error le avisamos al usuario
                     print(
                         "\x1b[1;31m" + "La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion " + "\x1b[1;31m")
             else:
                 break
-        opc = int(input("\x1b[3;35m" + "Ingrese el numero de la opcion deseada\n1.Metodo de Euler\n2.Metodo de Taylor\n3.Metodo de Runge Kutta\n4.Metodo multipaso\nOtro numero para salir\n"))
+            opc = int(input("\x1b[3;35m" + "Ingrese el numero de la opcion deseada\n1.Metodo de Euler\n2.Metodo de Taylor\n3.Metodo de Runge Kutta\n4.Metodo multipaso\nOtro numero para salir\n"))
