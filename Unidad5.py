@@ -8,7 +8,7 @@ from math import *
 class Un5:
     #Definimos la funcion principal U5
     def U5(self=None):
-        opc = int(input("\x1b[3;35m"+"Ingrese el numero de la opcion deseada\n1.Metodo de Euler\n2.Metodo de Taylor\n3.Metodo de Runge Kutta\n4.Metodo adaptativo\nOtro numero para salir\n"))
+        opc = int(input("\x1b[3;35m"+"Ingrese el numero de la opcion deseada\n1.Metodo de Euler\n2.Metodo de Taylor\n3.Metodo de Runge Kutta\n4.Metodo multipaso\nOtro numero para salir\n"))
 
         while opc > 0 and opc < 5:
             if opc==1:
@@ -293,5 +293,74 @@ class Un5:
                     # De haber un error le avisamos al usuario
                     print("\x1b[1;31m"+"La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion "+"\x1b[1;31m")
                 break
+            elif opc==4:
+                #Multipaso Adam Bashfort y Moulton
+                #Metodo Predictor orden 4-corrector de orden 3
+                # Definimos nuestras variables
+                x, y = symbols("x y")
+                # Mediante un try/except tratamos cualquier error
+                try:
+                    # Solicitamos al usuario que ingrese la funcion
+                    fn = eval(input("\x1b[0;30m" + "Ingrese la funcion f(x,y): "))
+                    # Mostramos para verificar que es correcta
+                    print(fn)
+                    # Solicitamos los valores iniciales de x e y
+                    x0 = float(input("Ingrese el valor incial de x0: "))
+                    xi=x0
+                    y0 = float(input("Ingrese el valor incial de y0: "))
+                    yi=y0
+                    # creamos un ciclo while para que el usuario ingrese el valor de h
+                    while True:
+                        # Solicitamos el valor de h
+                        h = float(input("Ingrese el tamaño de paso h: "))
+                        # Verificamos que el valor sea correcto
+                        if h <= 0:
+                            # si el valor no es correcto devolvemos el siguiente mensaje
+                            print("El tamaño de paso no puede cer cero o negativo")
+                        else:
+                            # de lo contrario cerramos nuestro ciclo y seguimos con los calculos
+                            break
+                    # Pedimos el valor a calcular
+                    xn = float(input("Ingrese el valor a calcular y(xn): "))
+                    # calculamos el numero de iteraciones
+                    itc = round(((xn - x0) / h))
+                    # Creamos un bucle for para calcular los valores
+                    for i in range(1, itc + 1):
+                        # Calculamos los valores de ki
+                        k1 = fn.subs([(x, x0), (y, y0)])
+                        k2 = fn.subs([(x, x0 + h / 2), (y, y0 + (h / 2) * k1)])
+                        k3 = fn.subs([(x, x0 + h / 2), (y, y0 + (h / 2) * k2)])
+                        k4 = fn.subs([(x, x0 + h), (y, y0 + h * k3)])
+                        # Despues de haber calculado los valores de ki calculamos el valor de la aproximacion
+                        yn = y0 + h / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
+                        if i==1:
+                           y1=yn
+                        elif i==2:
+                            y2=yn
+                        elif i==3:
+                            y3=yn
+                        # calculamos el valor de x para las demas iteraciones
+                        x0 = round(x0 + h, 5)
+                        y0 = yn
+                    #Una ves calculado los valores de Runge kutta evaluamos la funcion en estos valores
+                    fx0y0=fn.subs([(x,xi),(y,yi)])
+                    fx1y1=fn.subs([(x,xi+h),(y,y1)])
+                    fx2y2 = fn.subs([(x, xi + 2*h), (y, y2)])
+                    fx3y3 = fn.subs([(x, xi + 3*h), (y, y3)])
+                    #Una ves teniendo todos los datos procedemos a calcular el Predictor
+                    u4=y3+(h/24)*((55*fx3y3)-(59*fx2y2)+(37*fx1y1)-(9*fx0y0))
+
+                    y4=fn.subs([(x,xn),(y,u4)])
+
+                    #Por ultimo aplicamos la correccion de Adams-Moulton 3 pasos
+                    Ry4=y3+(h/24)*((9*y4)+(19*fx3y3)-(5*fx2y2)+fx1y1)
+                    #Devolvemos la respuesta al usuario
+                    print("\x1b[1;34m"+"\nLa respuesta a traves del metodo de multipasos es: ",Ry4)
+                    print("\x1b[3;35m")
+                    break
+                except:
+                    # De haber un error le avisamos al usuario
+                    print("\x1b[1;31m"+"La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion "+"\x1b[1;31m")
             else:
                 break
+        opc = int(input("\x1b[3;35m" + "Ingrese el numero de la opcion deseada\n1.Metodo de Euler\n2.Metodo de Taylor\n3.Metodo de Runge Kutta\n4.Metodo multipaso\nOtro numero para salir\n"))
