@@ -1,4 +1,3 @@
-import time
 import sympy as sym
 import numpy as np
 from tabulate import tabulate
