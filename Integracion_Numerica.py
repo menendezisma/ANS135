@@ -329,7 +329,7 @@ def Integracion():
 
             def romberg(f, a, b, eps=1E-8):
 
-                R = [[0.5 * (b - a) * (f(a) + f(b))]]  # R[0][0]
+                R = [[0.5 * (b - a) * (f(a) + f(b))]]
                 print_row(R[0])
                 n = 1
                 while True:
@@ -345,7 +345,6 @@ def Integracion():
                             f"La integral de {f(x)} desde {a} hasta {b} es {R[n][n]} con un error relativo de {float(abs(R[n][n - 1] - R[n][n]))}")
                     n += 1
 
-            # print(romberg(lambda t: (2**sin(t))*cos(t), 0, 2*pi))
             print(romberg(lambda t: e ** t, 0, 1))
             break
 
