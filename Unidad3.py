@@ -1,3 +1,4 @@
+#importamos las librerias a utilizar
 import sympy as sym
 import numpy as np
 from tabulate import tabulate
@@ -391,17 +392,6 @@ class Un3:
                 print(pol)
                 print('pol simplificado: ')
                 print(polSimp)
-
-                # Gráfica
-                plt.plot(xi, fi, 'o', label='Puntos')
-                ##for i in range(0,n,1):
-                ##    plt.axvline(xi[i],ls='--', color='yellow')
-                plt.plot(pxi, pfi, label='pol')
-                plt.legend()
-                plt.xlabel('X')
-                plt.ylabel('Y')
-                plt.title('Diferencias Divididas - Newton')
-                plt.show()
 
             # Opcion 4 Interpolacion de Hermite
             elif metodo == 4:

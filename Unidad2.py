@@ -13,7 +13,7 @@ class Un2:
         #Solicitamos al usuario que ingresa la funcion exponencial
         f = input("\x1b[1;33m"+"Introduce la funcion exponencial en terminos de x "+"\x1b[1;36m")
         fx=f.replace('exp(x)','e**x')
-        print(fx)
+        fx = f.replace('exp(-x)', 'e**-x')
         #Validamos que en realidad se trate de una funcion exponencial
         if "**x" in fx or "exp(-x" in fx or "exp(-x" in fx or "**-x" in fx:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
@@ -26,7 +26,7 @@ class Un2:
                     # Le colocamos un estilo
                     plt.style.use('classic')
                     #Definimos el rango de datos a evaluar la funcion
-                    x = np.linspace(-3, 3)
+                    x = np.linspace(-4, 4)
                     #creamos la variable ejey que almacenara los valores de la funcion evaluada en x
                     ejey = eval(fx)
                     #creamos una cuadricula en nuestra grafica
