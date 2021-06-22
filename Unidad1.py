@@ -111,6 +111,27 @@ class Un1:
                 # Mostramos la grafica al usuario
                 plt.show()
 
+                #Solicitamos el valor al usuario
+                x = float(input("ingrese el valor de x "))
+
+                aprox = 1
+                n = 1
+                #Implementamos un bucle para calcular los valores
+                while (ea > tol):
+                    ant = aprox
+                    #Evaluamos en la serie de Taylor
+                    aprox = aprox + ((x ** (2 * n)) / math.factorial(n))
+                    ea = abs(((aprox - ant) / aprox) * 100)
+                    #Imprimimos en cada iteracion los valores
+                    print("Iteracion ", n)
+                    print("Valor aproximado ", aprox)
+                    print("Error aproximado ", ea)
+                    n = n + 1
+                #Una ves finalizado imprimimos el valor de la aproximacion y el error
+                print("El valor es: ", aprox)
+                print("El error es: ", ea)
+
+
             # Si la opcion elejida fue 3
             elif opcion == 3:
                 # opcion 3 sen(x)
@@ -334,6 +355,29 @@ class Un1:
                 plt.plot(x, ch(x))
                 # Mostramos la grafica al usuario
                 plt.show()
+
+                cifras = -1
+                ea = 1000
+                #Solicitamos el valor de x
+                x = float(input("Ingrese el valor de x, intervalo \n"))
+                aprox = 1
+                n = 1
+                #Implementamos un bucle para calcular los valores
+                while (ea > tol):
+                    ant = aprox
+                    #evaluamos los valores en la serie de Taylor
+                    aprox = aprox + ((1 / (math.factorial(2 * n))) * (x ** (2 * n)))
+                    #Calculamos el Error
+                    ea = abs(((aprox - ant) / aprox) * 100)
+                    #Imprimimos los valores al usuario
+                    print("Iteracion ", n)
+                    print("Valor aproximado ", aprox)
+                    print("Error aproximado ", ea)
+                    n = n + 1
+
+                #Una ves finalizado demolvemos la aproximacion y el error
+                print("El valor es: ", aprox)
+                print("El error es: ", ea)
 
             # Si la opcion elejida fue 8
             elif opcion == 8:
