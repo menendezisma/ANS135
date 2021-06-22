@@ -113,6 +113,48 @@ class Un5:
                             print(
                                 "\x1b[1;31m" + "La funcion tiene un problema en sus sintaxis\nPor favor ingrese de nuevo la funcion " + "\x1b[1;35m")
 
+                    elif euler==3:
+                        #Metodo de Euler centrado
+                        x, y = symbols('x y')
+                        # Le solicito la funcion al usuario
+                        fn = input("\x1b[0;30m"+"Ingrese la funcion\nf(x)=")
+                        oncemore = iter([True, False])
+                        data = []
+
+                        def funcion(x0, y0):
+                            ec = sympify(fn).subs([(x, x0), (y, y0)])
+                            return (ec)
+
+                        # Pedimos los datos iniciales
+                        x0 = float(input("Ingrese el valor incial de x0: "))
+                        y0 = float(input("Ingrese el valor incial de y0: "))
+
+                        # mientras prueba es 1 significa que el valor de n es no valido.
+                        prueba = 1
+                        while (prueba == 1):
+                            n = int(input("Ingrese el numero de espacios\nn= "))
+                            # validamos el valor de n para las partes iguales
+                            if n >= 0:
+                                # Obtenemos el valor aproximar de la función
+                                x1 = float(input("Ingrese el valor aproximar: "))
+                                # calculamos el valor de h que representa el espaciado
+                                h = abs((x0 - x1) / n)
+                                # generamos las iteraciones hasta que llegue a n+1 iteraciones
+                                for i in range(n + 1):
+                                    # Capturo los datos en tabla en cada iteración
+                                    data.append([i, x0, y0])
+                                    # para xi sumamos en cada iteracion h al valor que pasara hacer inicial
+                                    xi = x0 + h
+                                    # Evaluo los valores iniciales y creamos Yi
+                                    yi = y0 + h * funcion(x0, y0)
+                                    # hacemos cambio de variable para la siguiente iteración
+                                    x0 = xi
+                                    y0 = yi
+                                # Genero el encabezado de la tabla,ademas de imprimir los valores obtenidos
+                                print(tabulate(data, headers=["n", "X(n)", "Y(n)"], tablefmt="orgtbl"))
+                                prueba = 0
+                            else:
+                                prueba = 1
 
                     elif euler==4:
                         # Metodo Euler mejorado
