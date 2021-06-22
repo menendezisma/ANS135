@@ -15,7 +15,7 @@ class Un2:
         fx=f.replace('exp(x)','e**x')
         fx = f.replace('exp(-x)', 'e**-x')
         #Validamos que en realidad se trate de una funcion exponencial
-        if "**x" in fx or "exp(-x" in fx or "exp(-x" in fx or "**-x" in fx:
+        if "**x" in fx or "exp(x" in fx or "exp(-x" in fx or "**-x" in fx:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
             metodo = int(input("\x1b[3;36m"+"Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
                 "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Müller\nOtro numero para salir\n"+"\x1b[1;36m"))
