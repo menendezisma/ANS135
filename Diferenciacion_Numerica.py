@@ -1,3 +1,4 @@
+#Importamos las librerias necesarias
 import sympy
 from tabulate import tabulate
 
