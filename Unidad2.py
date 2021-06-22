@@ -26,7 +26,7 @@ class Un2:
                     # Le colocamos un estilo
                     plt.style.use('classic')
                     #Definimos el rango de datos a evaluar la funcion
-                    x = np.linspace(-4, 4)
+                    x = np.linspace(-2, 4)
                     #creamos la variable ejey que almacenara los valores de la funcion evaluada en x
                     ejey = eval(fx)
                     #creamos una cuadricula en nuestra grafica
