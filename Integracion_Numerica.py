@@ -12,6 +12,7 @@ def Integracion():
     while opc > 0 and opc < 3:
         #Reglas de integracion numerica
         if opc==1:
+            # Desplegamos un menu
             opcion = int(input("\x1b[3;31m" + "Ingrese el numero de la regla para aproximar el valor de la integral\n""1.Trapecio Simple\n2.Trapecio compuesto\n3.Simpson 1/3 simple\n4.Simpson 1/3 compuesto\n5.Simpson 3/8 simple\n6.Simpson 3/8 compuesto\nOtro numero para salir " + "\x1b[0;30m"))
             while opcion > 0 or opcion < 7:
                 # Trapecio simple
