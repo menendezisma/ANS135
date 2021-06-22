@@ -11,7 +11,9 @@ class Un2:
     #Definimos la funcion U2 que recibe el argumento tolerancia
     def U2(tolerancia):
         #Solicitamos al usuario que ingresa la funcion exponencial
-        fx = input("\x1b[1;33m"+"Introduce la funcion exponencial en terminos de x "+"\x1b[1;36m")
+        f = input("\x1b[1;33m"+"Introduce la funcion exponencial en terminos de x "+"\x1b[1;36m")
+        fx=f.replace('exp(x)','e**x')
+        print(fx)
         #Validamos que en realidad se trate de una funcion exponencial
         if "**x" in fx or "exp(-x" in fx or "exp(-x" in fx or "**-x" in fx:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
@@ -21,6 +23,8 @@ class Un2:
             while metodo > 0 and metodo < 8:
                 #Opcion 1 Grafico
                 if metodo == 1:
+                    # Le colocamos un estilo
+                    plt.style.use('classic')
                     #Definimos el rango de datos a evaluar la funcion
                     x = np.linspace(-3, 3)
                     #creamos la variable ejey que almacenara los valores de la funcion evaluada en x
