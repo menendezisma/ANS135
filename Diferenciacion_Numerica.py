@@ -2,7 +2,9 @@
 import sympy
 from tabulate import tabulate
 
+#Creamos el metodo Diferenciacion
 def Diferenciacion():
+    #Definimos las variables a utilizar
     x = sympy.symbols('x')
     print("..:Bienvenido:..")
     print("..Derivacion numerica..")
@@ -11,7 +13,7 @@ def Diferenciacion():
     while opc > 0 and opc < 3:
         if opc == 1:
             opc2 = int(input(
-                "que metodo desea realizar\n1.Diferencia finita hacia adelante \n2.Diferencia finita hacia atras \n3.diferencia finita centrada"
+                "Que metodo desea realizar\n1.Diferencia finita hacia adelante \n2.Diferencia finita hacia atras \n3.Diferencia finita centrada"
                 "\n4.Formula de los tres puntos \n5.Formula de los cinco puntos\n6.Diferencias de orden superior\n7.Cualquier numero para Salir "))
             while opc2 > 0 and opc2 < 7:
                 if opc2 == 1:
@@ -53,6 +55,7 @@ def Diferenciacion():
                     dfx2 = ((3 * Efx) - 4 * (fxh) + EX2h) / (2 * h)
                     print("segunda diferencia finita hacia adelante")
                     print("f'(", X, ") = ", dfx2)
+
                 elif opc2 == 3:
                     # para diferencia finita centrada, haremos uso solo de la orden cuatro
                     fx = input("Ingrese la funcion en terminos de x\nf(x): ")
@@ -275,6 +278,10 @@ def Diferenciacion():
 
                     print("**EJECUCION FINALIZADA**")
 
-
                 else:
                     break
+                opc2 = int(input(
+                    "Que metodo desea realizar\n1.Diferencia finita hacia adelante \n2.Diferencia finita hacia atras \n3.Diferencia finita centrada"
+                    "\n4.Formula de los tres puntos \n5.Formula de los cinco puntos\n6.Diferencias de orden superior\n7.Cualquier numero para Salir "))
+        opc = int(input(
+            "Ingrese el numero de la opcion deseada\n1.Diferencia finita \n2.Extrapolacion de Richardson\nOtro numero para salir "))
