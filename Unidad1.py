@@ -43,6 +43,8 @@ class Un1:
                     e = np.exp(1)
                     return np.log(e + x)
 
+                #Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-3, 3)
                 # Creamos una cuadricula
@@ -90,6 +92,8 @@ class Un1:
                 def ex2(x):
                     return np.exp(x ** 2)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-1, 1)
                 # Creamos una cuadricula
@@ -114,6 +118,8 @@ class Un1:
                 def sen(x):
                     return np.sin(x)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(0, 10)
                 # Creamos una cuadricula
@@ -160,6 +166,8 @@ class Un1:
                 def cos(x):
                     return np.cos(x)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(0, 10)
                 # Creamos una cuadricula
@@ -203,6 +211,8 @@ class Un1:
                 def ex(x):
                     return np.exp(x)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-3, 2)
                 # Creamos una cuadricula
@@ -246,6 +256,8 @@ class Un1:
                 def sh(x):
                     return np.sinh(x)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-3, 3)
                 # Creamos una cuadricula
@@ -304,6 +316,8 @@ class Un1:
                 def ch(x):
                     return np.cosh(x)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-3, 3)
                 # Creamos una cuadricula
@@ -328,6 +342,8 @@ class Un1:
                 def arcsen(x):
                     return np.arcsin(x)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-1, 1)
                 # Creamos una cuadricula
@@ -387,6 +403,8 @@ class Un1:
                 def ln(x):
                     return np.log(1 + x)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-3, 5)
                 # Creamos una cuadricula
@@ -434,6 +452,8 @@ class Un1:
                 def cociente(x):
                     return 1 / (1 + x ** 2)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-3, 3)
                 # Creamos una cuadricula
@@ -481,6 +501,8 @@ class Un1:
                 def arctg(x):
                     return np.arctan(x)
 
+                # Le colocamos un estilo
+                plt.style.use('seaborn-dark')
                 # Desinamos un rango de datos para graficar la funcion
                 x = np.linspace(-4, 4)
                 # Creamos una cuadricula
