@@ -12,8 +12,11 @@ class Un2:
     def U2(tolerancia):
         #Solicitamos al usuario que ingresa la funcion exponencial
         f = input("\x1b[1;33m"+"Introduce la funcion exponencial en terminos de x "+"\x1b[1;36m")
-        fx=f.replace('exp(x)','e**x')
-        fx = f.replace('exp(-x)', 'e**-x')
+        if "exp(x)" in f:
+            fx=f.replace('exp(x)','e**x')
+        elif "exp(-x)" in f:
+            fx = f.replace('exp(-x)', 'e**-x')
+        print(fx)
         #Validamos que en realidad se trate de una funcion exponencial
         if "**x" in fx or "exp(x" in fx or "exp(-x" in fx or "**-x" in fx:
             #Desplegamos un menu para que el usuario elija el metodo a utilizar
