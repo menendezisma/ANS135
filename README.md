@@ -1,23 +1,25 @@
-*UNIVERSIDAD DE EL SALVADOR
+**UNIVERSIDAD DE EL SALVADOR
 FACULTAD MULTIDISCIPLINARIA DE OCCIDENTE 
-DEPARTAMENTO DE INGENIERÍA Y ARQUITECTURA*
+DEPARTAMENTO DE INGENIERÍA Y ARQUITECTURA**
 
 
+<br/>
 
-_PROYECTO FINAL_
+**PROYECTO FINAL**
 
-
+<br/>
 
 *MATERIA*
 
 Análisis numérico
 
+<br/>
 
 *DOCENTE*
 
 Ing. Xenia Ivette Peñete Godoy
 
-
+<br/>
 
 *INTEGRANTES*
 
@@ -31,5 +33,6 @@ Jiménez Martínez,Kevin Emmanuel JM17015
 
 Menéndez Martínez,Mauricio Israel MM18144
 
+<br/>
 
-_22 DE JUNIO DE 2021_
+__22 DE JUNIO DE 2021__
