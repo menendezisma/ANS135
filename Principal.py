@@ -5,6 +5,7 @@ from Unidad3 import Un3
 from Unidad5 import Un5
 from Integracion_Numerica import Integracion
 from Diferenciacion_Numerica import Diferenciacion
+import sys
 
 #Creamos un try/catch para evitar que el usuario corra el codigo sin haber instalado las librerias
 try:
@@ -29,68 +30,71 @@ print("\x1b[1;34m" + "..............................:Bienvenido:................
 print("\x1b[3;31m"+"--------------- Recomendaciones para el uso del programa---------------\n"+"\x1b[3;31m")
 print("Los terminos de las expresiones deben ir con un * entre ellas\npara usar la raiz cuadrada use sqrt()")
 print("para las funciones trogonometricas use: sin(), cos(), tan()\npara usar la funcion exponencial use exp()\nsi solo desea elevar a una potencia use **")
+print("para trabajar con Ln() use log()")
 print("------------------------------------------------------------------------"+"\x1b[1;34m")
 
+try:
+    menu = int(input("\x1b[1;34m" + "Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir " + "\x1b[1;34m"))
+    # La opcion ingresada tiene que estar entre 1 y 5
+    while menu > 0 or menu < 6:
+        # OPCION 1
+        if menu == 1:
+            try:
+                # Pedimos al usuario el numero de cifras significativas
+                cifras = int(input("Cuantas cifras significativas desea "))
+                if cifras >= 0:
+                    # Calculamos el error Es
+                    tolerancia = 0.5 * (10 ** (2 - cifras))
 
-menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "+"\x1b[1;34m"))
+                    # Creamos una nueva instancia de la clase unidad 1
+                    Unidad1 = Un1.U1(tolerancia)
+                else:
+                    print("\x1b[1;31m" + "Ingrese un numero valido"+"\x1b[1;31m")
 
-# La opcion ingresada tiene que estar entre 1 y 5
-while menu > 0 or menu < 6:
-    # OPCION 1
-    if menu == 1:
-        try:
-            # Pedimos al usuario el numero de cifras significativas
-            cifras = int(input("Cuantas cifras significativas desea "))
-            if cifras >= 0:
-                # Calculamos el error Es
-                tolerancia = 0.5 * (10 ** (2 - cifras))
+            except:
+                print("\x1b[1;31m", "El error fue: ",sys.exc_info()[0],"\x1b[1;31m")
 
-                # Creamos una nueva instancia de la clase unidad 1
-                Unidad1 = Un1.U1(tolerancia)
-            else:
-                print("\x1b[1;31m" + "Ingrese un numero valido"+"\x1b[1;31m")
+        # OPCION 2
+        elif menu == 2:
+            try:
+                # Pedimos al usuario el numero de cifras significativas
+                cifras = int(input("Cuantas cifras significativas desea "))
+                if cifras >= 0:
+                    # Calculamos el error Es
+                    tolerancia = 0.5 * (10 ** (2 - cifras))
 
-        except:
-            print("\x1b[1;31m" + "Ingrese un numero valido"+"\x1b[1;31m")
+                    # Creamos una nueva instancia de la clase unidad 1
+                    Unidad2 = Un2.U2(tolerancia)
+                else:
+                    print("\x1b[1;31m" + "Ingrese un numero valido" + "\x1b[1;31m")
 
-    # OPCION 2
-    elif menu == 2:
-        #try:
-        # Pedimos al usuario el numero de cifras significativas
-        cifras = int(input("Cuantas cifras significativas desea "))
-        if cifras >= 0:
-            # Calculamos el error Es
-            tolerancia = 0.5 * (10 ** (2 - cifras))
+            except:
+                print("\x1b[1;31m", "El error fue: ",sys.exc_info()[0],"\x1b[1;31m")
 
-            # Creamos una nueva instancia de la clase unidad 1
-            Unidad2 = Un2.U2(tolerancia)
+        # OPCION 3
+        elif menu == 3:
+            # Creamos una nueva instancia de la clase unidad 3
+            Unidad3 = Un3.U3(self=None)
+
+        #OPCION 4
+        elif menu == 4:
+            #Creamos una instancia nueva de la unidad 4
+            integracion=int(input("\x1b[3;32m" + "Ingrese el numero de la opcion deseada\n1.Diferenciacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
+            while integracion > 0 and integracion < 5:
+                if integracion==1:
+                    DifNum=Diferenciacion()
+                if integracion==2:
+                    IntNum = Integracion()
+                else:
+                    break
+                integracion=int(input("\x1b[3;32m" + "Ingrese el numero de la opcion deseada\n1.Diferenciacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
+
+        elif menu==5:
+            Unidad5=Un5.U5()
         else:
-            print("\x1b[1;31m" + "Ingrese un numero valido" + "\x1b[1;31m")
+            break
 
-        #except:
-            #print("\x1b[1;31m" + "Ingrese un numero valido" + "\x1b[1;31m")
+        menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "+"\x1b[1;34m"))
 
-    # OPCION 3
-    elif menu == 3:
-        # Creamos una nueva instancia de la clase unidad 3
-        Unidad3 = Un3.U3(self=None)
-
-    #OPCION 4
-    elif menu == 4:
-        #Creamos una instancia nueva de la unidad 4
-        integracion=int(input("\x1b[3;32m" + "Ingrese el numero de la opcion deseada\n1.Derivacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
-        while integracion > 0 and integracion < 5:
-            if integracion==1:
-                DifNum=Diferenciacion()
-            if integracion==2:
-                IntNum = Integracion()
-            else:
-                break
-            integracion=int(input("\x1b[3;32m" + "Ingrese el numero de la opcion deseada\n1.Derivacion numerica\n2.Integracion numerica\nOtro numero para salir " + "\x1b[0;30m"))
-
-    elif menu==5:
-        Unidad5=Un5.U5()
-    else:
-        break
-
-    menu = int(input("\x1b[1;34m"+"Ingrese el numero de la opcion deseada\n1.Unidad 1\n2.Unidad 2\n3.Unidad 3\n4.Unidad 4\n5.Unidad 5\nOtro numero para salir "+"\x1b[1;34m"))
+except:
+    print("\x1b[1;31m", "El error fue: ", sys.exc_info()[0], "\x1b[1;31m")

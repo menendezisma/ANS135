@@ -16,6 +16,7 @@ class Un2:
             fx=f.replace('exp(x)','e**x')
         elif "exp(-x)" in f:
             fx = f.replace('exp(-x)', 'e**-x')
+        #Le mostramos la funcion al usuario para verificar que es correcta
         print(fx)
         #Validamos que en realidad se trate de una funcion exponencial
         if "**x" in fx or "exp(x" in fx or "exp(-x" in fx or "**-x" in fx:
@@ -113,10 +114,14 @@ class Un2:
                     oncemore = iter([True, False])
                     data = []
 
+                    # Defino la función a trabajar
+                    def f(x):
+                        y = 2.718281828 ** (-x) - x
+                        return (y)
+
                     # Obteniendo los datos
                     x1 = float(input("\x1b[0;30m"+"¿Cual es el valor de X1?\n"))
                     x2 = float(input("¿Cual es el valor de X2?\n"))
-
                     if f(x1) * f(x2) <= 0:
                         # inicializo las variables
                         xr = 0
@@ -201,12 +206,15 @@ class Un2:
                     cifras = -1
                     ea = 1000
                     Xn = 0
+
                     # se declara a "x" como simbolo en las funciones que ingrese el usuario
                     x = sp.symbols("x")
+                    # se le pide al usuario que ingrese la funcion
+                    fx = f
                     # se calcula la primer derivada
                     dfx = sp.diff(fx)
                     # se muestra la derivada de la funcion
-                    print("\x1b[0;30m"+"f'(x)= ", dfx)
+                    print("\x1b[0;30m","f'(x)= ", dfx)
                     # el metodo de newton exige un valor incial, aca se pide este valor incial
                     Xn = float(input("digite el valor inicial "))
                     # i=1, esto es quivalente a iteracion
@@ -230,6 +238,7 @@ class Un2:
                         # ahora Xn=aprox
                         Xn = aprox
                         # incrementamos el valor de i
+                        i = i + 1
 
                 #Opcion 6 Secante
                 elif metodo==6:
@@ -330,6 +339,7 @@ class Un2:
                     Es = 0.5 * (10 ** (2 - cifras))  # en porcentaje
 
                     data = muller(x0, x1, x2, Es, funcion)
+                    print("\x1b[0;30m",end="")
                     print(
                         f"La raíz es: {data[-1][-2]}, \nCon un error de {data[-1][-1]}")
                     print(tabulate(data, headers=["X0", "X1", "X2", "h0", "h1", "&0", "&1", "a", "b", "c", "X3", "Ea"],

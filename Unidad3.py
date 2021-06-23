@@ -17,6 +17,7 @@ class Un3:
             if metodo == 1:
                 opc=int(input("Ingrese la opcion deseada\n1.Ingresar datos\n2.Ingresar funcion "))
                 while opc > 0 and opc < 3:
+                    #Ingresar datos
                     if opc==1:
                         # Definimos nuestras variables
                         x = sym.Symbol('x')
@@ -60,6 +61,7 @@ class Un3:
                         print("\npol Simple: \n", polSimp)
                         break
 
+                    # Ingresar funcion
                     elif opc==2:
                         #Declaro las listas necesarias
                         data = []
@@ -73,52 +75,59 @@ class Un3:
                         polinomio = 0
 
                         #Solicito al usuario que ingrese la funcion
-                        funcion = input("Ingrese la funcion en terms de x\nf(x): ")
-                        lista = funcion.split()
-                        for i in lista:
-                            # Solicitando datos al usuario para la funcion
-                            print("Ingrese el valor del intervalo a evaluar ")
-                            x0 = float(input("Ingrese el valor x0: "))
-                            x1 = float(input("Ingrese el valor x1: "))
+                        funcion = input("Ingrese la funcion en terminos de x\nf(x): ")
 
-                            # Creando la tabla de datos
-                            xm = (x0 + x1) / 2
-                            nDatos = int(input("Ingrese la cantidad de datos "))
-                            for i in range(nDatos):
-                                if i % 2 == 0:
-                                    xm = (x0 + xm) / 2
-                                    datoFi = sym.sympify(funcion).subs(x,xm)
-                                    xi.append(xm)
-                                    fi.append(datoFi)
-                                    data.append([xm, datoFi])
-                                else:
-                                    xm = (x1 + xm) / 2
-                                    datoFi = sym.sympify(funcion).subs(x,xm)
-                                    xi.append(xm)
-                                    fi.append(datoFi)
-                                    data.append([xm, datoFi])
+                        #Solo se trabajara con Ln
+                        if "ln(x" not in funcion:
+                            print("\x1b[1;31m"+"Asegurese de ingresar una funcion logaritmica"+"\x1b[1;35m")
+                            break
+                        else:
+                            lista = funcion.split()
+                            for i in lista:
+                                # Solicitando datos al usuario para la funcion
+                                print("Ingrese el valor del intervalo a evaluar ")
+                                x0 = float(input("Ingrese el valor x0: "))
+                                x1 = float(input("Ingrese el valor x1: "))
 
-                            data.sort()
-                            print(tabulate(data, headers=["x", "y"], tablefmt="pretty"))
+                                # Creando la tabla de datos
+                                xm = (x0 + x1) / 2
+                                nDatos = int(input("Ingrese la cantidad de datos "))
+                                for i in range(nDatos):
+                                    if i % 2 == 0:
+                                        xm = (x0 + xm) / 2
+                                        datoFi = sym.sympify(funcion).subs(x,xm)
+                                        xi.append(xm)
+                                        fi.append(datoFi)
+                                        data.append([xm, datoFi])
+                                    else:
+                                        xm = (x1 + xm) / 2
+                                        datoFi = sym.sympify(funcion).subs(x,xm)
+                                        xi.append(xm)
+                                        fi.append(datoFi)
+                                        data.append([xm, datoFi])
 
-                            # procedimiento de Langrage
-                            for y in range(0, nDatos, 1):
-                                num = 1
-                                denom = 1
-                                for j in range(0, nDatos, 1):
-                                    if y != j:
-                                        num = num * (x - xi[j])
-                                        denom = denom * (xi[y] - xi[j])
-                                    term = (num / denom) * fi[y]
-                                polinomio = polinomio + term
-                            polSim = sym.expand(polinomio)
-                            funcion = " ", polSim
-                            print("polinomio: \n", polinomio)
-                            print("\npolinomio Simple: \n", polSim)
+                                data.sort()
+                                print(tabulate(data, headers=["x", "y"], tablefmt="pretty"))
+
+                                # procedimiento de Langrage
+                                for y in range(0, nDatos, 1):
+                                    num = 1
+                                    denom = 1
+                                    for j in range(0, nDatos, 1):
+                                        if y != j:
+                                            num = num * (x - xi[j])
+                                            denom = denom * (xi[y] - xi[j])
+                                        term = (num / denom) * fi[y]
+                                    polinomio = polinomio + term
+                                polSim = sym.expand(polinomio)
+                                funcion = " ", polSim
+                                print("polinomio: \n", polinomio)
+                                print("\npolinomio Simple: \n", polSim)
+                            break
                     else:
                         break
 
-            # Opcion 2 pol de newton
+            # Opcion 2 polinomio de newton
             elif metodo == 2:
                 opc = int(input("Ingrese la opcion deseada\n1.Ingresar datos\n2.Ingresar funcion "))
                 while opc > 0 and opc < 3:
@@ -203,6 +212,7 @@ class Un3:
                         print(pol)
                         print('pol simplificado: ')
                         print(polSimp)
+                        break
 
                     # Opcion 2- Ingresa Funcion
                     elif opc==2:
@@ -219,96 +229,94 @@ class Un3:
 
                         #Solicitamos al ususario que ingrese la funcion
                         funcion = input("Ingrese la funcion en terms de x\nf(x): ")
-                        lista = funcion.split()
-                        for i in lista:
-                            # Solicitando datos al usuario para la funcion
-                            print("Ingrese el valor del intervalo a evaluar ")
-                            x0 = float(input("Ingrese el valor x0: "))
-                            x1 = float(input("Ingrese el valor x1: "))
+                        #Solo se trabajara con Ln
+                        if "ln(x" not in funcion:
+                            print("\x1b[1;31m"+"Asegurese de ingresar una funcion logaritmica"+"\x1b[1;35m")
+                            break
+                        else:
+                            lista = funcion.split()
+                            for i in lista:
+                                # Solicitando datos al usuario para la funcion
+                                print("Ingrese el valor del intervalo a evaluar ")
+                                x0 = float(input("Ingrese el valor x0: "))
+                                x1 = float(input("Ingrese el valor x1: "))
 
-                            # Creando la tabla de datos
-                            xm = (x0 + x1) / 2
-                            nDatos = int(input("Ingrese la cantidad de datos "))
-                            for i in range(nDatos):
-                                if i % 2 == 0:
-                                    xm = (x0 + xm) / 2
-                                    datoFi = sym.sympify(funcion).subs(x,xm)
-                                    xi.append(xm)
-                                    fi.append(datoFi)
-                                    data.append([xm, datoFi])
-                                else:
-                                    xm = (x1 + xm) / 2
-                                    datoFi = sym.sympify(funcion).subs(x,xm)
-                                    xi.append(xm)
-                                    fi.append(datoFi)
-                                    data.append([xm, datoFi])
-                            data.sort()
-                            print(tabulate(data, headers=["x", "y"], tablefmt="pretty"))
-                            # procedimiento del polinomio de newton
-                            x = sym.Symbol('x')
+                                # Creando la tabla de datos
+                                xm = (x0 + x1) / 2
+                                nDatos = int(input("Ingrese la cantidad de datos "))
+                                for i in range(nDatos):
+                                    if i % 2 == 0:
+                                        xm = (x0 + xm) / 2
+                                        datoFi = sym.sympify(funcion).subs(x,xm)
+                                        xi.append(xm)
+                                        fi.append(datoFi)
+                                        data.append([xm, datoFi])
+                                    else:
+                                        xm = (x1 + xm) / 2
+                                        datoFi = sym.sympify(funcion).subs(x,xm)
+                                        xi.append(xm)
+                                        fi.append(datoFi)
+                                        data.append([xm, datoFi])
+                                data.sort()
+                                print(tabulate(data, headers=["x", "y"], tablefmt="pretty"))
+                                # procedimiento del polinomio de newton
+                                x = sym.Symbol('x')
 
-                            # Tabla de Diferencias Divididas Avanzadas
-                            n = len(xi)
-                            # diferencias divididas vacia
-                            dfinita = np.zeros(shape=(n, n), dtype=float)
-                            data = np.concatenate((data, dfinita), axis=1)
-                            # Calcula tabla, inicia en columna 3
-                            [n, m] = np.shape(data)
-                            diagonal = n - 1
-                            j = 3
-                            titulo = ["iteracion", "x", "y"]
-                            while (j < m):
-                                # cada fila de columna
-                                i = 0
-                                # paso = j-2 # inicia en 1
-                                while (i < diagonal):
-                                    denom = (xi[i + (j - 2)] - xi[i])
-                                    num = data[i + 1, j - 1] - data[i, j - 1]
-                                    data[i, j] = num / denom
-                                    i = i + 1
-                                    diagonal = diagonal - 1
-                                    j = j + 1
-                            # POLINOMIO con diferencias Divididas
-                            # caso: puntos equidistantes en eje x
-                            dDividida = data[0, 3:]
-                            n = len(dfinita)
+                                # Tabla de Diferencias Divididas Avanzadas
+                                n = len(xi)
+                                # diferencias divididas vacia
+                                dfinita = np.zeros(shape=(n, n), dtype=float)
+                                data = np.concatenate((data, dfinita), axis=1)
+                                # Calcula tabla, inicia en columna 3
+                                [n, m] = np.shape(data)
+                                diagonal = n - 1
+                                j = 3
+                                titulo = ["iteracion", "x", "y"]
+                                while (j < m):
+                                    # cada fila de columna
+                                    i = 0
+                                    # paso = j-2 # inicia en 1
+                                    while (i < diagonal):
+                                        denom = (xi[i + (j - 2)] - xi[i])
+                                        num = data[i + 1, j - 1] - data[i, j - 1]
+                                        data[i, j] = num / denom
+                                        i = i + 1
+                                        diagonal = diagonal - 1
+                                        j = j + 1
+                                # POLINOMIO con diferencias Divididas
+                                # caso: puntos equidistantes en eje x
+                                dDividida = data[0, 3:]
+                                n = len(dfinita)
 
-                            # expresión del polinomio con Sympy
-                            x = sym.Symbol('x')
-                            polinomio = fi[0]
-                            for j in range(1, n, 1):
-                                factor = dDividida[j - 1]
-                                term = 1
-                                for k in range(0, j, 1):
-                                    term = term * (x - xi[k])
-                                polinomio = polinomio + term * factor
+                                # expresión del polinomio con Sympy
+                                x = sym.Symbol('x')
+                                polinomio = fi[0]
+                                for j in range(1, n, 1):
+                                    factor = dDividida[j - 1]
+                                    term = 1
+                                    for k in range(0, j, 1):
+                                        term = term * (x - xi[k])
+                                    polinomio = polinomio + term * factor
 
-                            # simplifica multiplicando entre (x-xi)
-                            polisimple = polinomio.expand()
+                                # simplifica multiplicando entre (x-xi)
+                                polisimple = polinomio.expand()
 
-                            # polinomio para evaluacion numérica
-                            px = sym.lambdify(x, polisimple)
+                                # polinomio para evaluacion numérica
+                                px = sym.lambdify(x, polisimple)
 
-                            # Puntos para la gráfica
-                            muestras = 101
-                            a = np.min(xi)
-                            b = np.max(xi)
-                            pxi = np.linspace(a, b, muestras)
-                            pfi = px(pxi)
+                                # Puntos para la gráfica
+                                muestras = 101
+                                a = np.min(xi)
+                                b = np.max(xi)
+                                pxi = np.linspace(a, b, muestras)
+                                pfi = px(pxi)
 
-                            # SALIDA
-                            print('polinomio: ')
-                            print(polinomio)
-                            print('polinomio simplificado: ')
-                            print(polisimple)
-
-                            opcion = input("****  ¿Desea evaluar algun punto en X?\n1. Si \n2. No")
-                            if opcion == 1:
-                                x = float(input("Ingrese el valor de x "))
-                                px = eval(str(polisimple))
-                                print("valor evaluado es: ", px)
-                            if opcion == 2:
-                                print("Fin del programa")
+                                # SALIDA
+                                print('polinomio: ')
+                                print(polinomio)
+                                print('polinomio simplificado: ')
+                                print(polisimple)
+                            break
                     else:
                         break
 
@@ -515,8 +523,8 @@ class Un3:
                 opcion = input("****  ¿Desea evaluar algun punto en X?\n1. Si \n2. No\n")
                 if opcion == '1':
                     x = float(input("Ingrese el valor de x \t"))
-                    px = eval(str(polSim))
-                    print("valor evaluado es: ", px)
+                    px = eval(str(poliSim))
+                    print("valor evaluado es: ", px-1)
                 if opcion == 2:
                     print("Programa finalizado")
                     break

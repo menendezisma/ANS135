@@ -20,21 +20,21 @@ class Un1:
         Vp= Valor presente
         Ea=Error absoluto
         '''
-        def tabular(va, vp, it, toleran=tol):
-            while Ea(va, vp) > toleran or next(oncemore):
+        def tabular(Vanterior, Vpresente, it, toleran=tol):
+            while Ea(Vanterior, Vpresente) > toleran or next(oncemore):
                 #Creamos una tabla y le mandamos los datos
-                data.append([it + 1, va, vp, Ea(va, vp)])
-                vp = va
+                data.append([it + 1, Vanterior, Vpresente, Ea(Vanterior, Vpresente)])
+                Vpresente = Vanterior
                 # aumentar en 1 la iteracion
                 it += 1
-                va += g(x, it)
+                Vanterior += g(x, it)
 
             #Imprimimos la tabla
             print(tabulate(data, headers=["It", "Valor Actual", "Valor Pasado", "Error"], tablefmt="pretty"))
 
         # Desplegamos un menu para que el usuario elija la funcion que desea resolver
-        opcion = int(input("\x1b[3;32m" + "Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\n12.Limpiar consola\nOtro numero para salir " + "\x1b[0;30m"))
-        while opcion > 0 or opcion < 13:
+        opcion = int(input("\x1b[3;32m" + "Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\nOtro numero para salir " + "\x1b[0;30m"))
+        while opcion > 0 or opcion < 12:
             # Si la opcion elejida fue 1
             if opcion == 1:
                 # opcion 1 Ln(e+x)
@@ -127,6 +127,8 @@ class Un1:
                     print("Valor aproximado ", aprox)
                     print("Error aproximado ", ea)
                     n = n + 1
+
+               # tabular(ant,aprox,n,ea)
                 #Una ves finalizado imprimimos el valor de la aproximacion y el error
                 print("El valor es: ", aprox)
                 print("El error es: ", ea)
@@ -590,4 +592,4 @@ class Un1:
             else:
                 break
 
-            opcion = int(input("\x1b[3;32m" + "Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\n12.Limpiar consola\nOtro numero para salir " + "\x1b[0;30m"))
+            opcion = int(input("\x1b[3;32m" + "Ingrese el numero del ejercicio que desea ver la solucion\n1.Ln(e+x)\n2.e^(x^2)\n3.sen(x)\n4.cos(x)\n5.e^x\n6.sh(x)\n7.ch(x)\n8.arcsen(x)\n9.Ln(1+x)\n10.1/(1+x^2)\n11.arctg(x)\nOtro numero para salir " + "\x1b[0;30m"))
