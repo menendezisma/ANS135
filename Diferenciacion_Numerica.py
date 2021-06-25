@@ -6,7 +6,7 @@ from tabulate import tabulate
 #Creamos el metodo Diferenciacion
 def Diferenciacion():
     #Definimos las variables a utilizar
-    x = sympy.symbols('x')
+    x = sympy.Symbol("x")
     opc = int(input("\x1b[1;33m"+"Ingrese el numero de la opcion deseada\n1.Diferencias finitas \n2.Extrapolacion de Richardson\nOtro numero para salir "+"\x1b[1;35m"))
 
     while opc > 0 and opc < 3:
@@ -44,6 +44,7 @@ def Diferenciacion():
                         print("segunda diferencia finita hacia adelante")
                         print("f'(", X, ") = ", dfx2)
 
+                # Diferencias finitas hacia atras
                 elif opc2 == 2:
                     # Pedimos la funcion al usuario
                     fx = input("\x1b[1;30m""Ingrese la funcion en terminos de x\nf(x): ")
@@ -96,7 +97,7 @@ def Diferenciacion():
                 elif opc2 == 4:
                     # formula de los 3 puntos
                     # Pedimos la funcion al usuario
-                    fx = input("\x1b[1;30m""Ingrese la funcion en terminos de x\nf(x): ")
+                    fx = input("\x1b[1;30m"+"Ingrese la funcion en terminos de x\nf(x): ")
                     # Validamos que la funcion ingresada sea algebraica
                     if "sin(" in fx or "cos(" in fx or "tan(" in fx or "cos(" in fx or "asin(" in fx or "acos(" in fx or "atan(" in fx or "e**" in fx or "exp(" in fx or "log(" in fx or "ln(" in fx or "e*" in fx:
                         print("\x1b[1;31m" + "Asegurese de ingresar una funcion algebraica")
@@ -110,7 +111,7 @@ def Diferenciacion():
                         EX2h = sympy.sympify(fx).subs(x, X2h)
                         Xh = X + h
                         EXh = sympy.sympify(fx).subs(x, Xh)
-                        dfx = ((-3 * Efx) + 4 * (fxh) - EX2h) / (2 * h)
+                        dfx = (((-3 * Efx) + (4 * EXh) - EX2h) / (2 * h))
                         print("formula de los tres puntos")
                         print("f'(", X, ") = ", dfx)
 

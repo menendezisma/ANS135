@@ -208,7 +208,7 @@ class Un2:
                     Xn = 0
 
                     # se declara a "x" como simbolo en las funciones que ingrese el usuario
-                    x = sp.symbols("x")
+                    x = sp.Symbol('x')
                     # se le pide al usuario que ingrese la funcion
                     fx = f
                     # se calcula la primer derivada
