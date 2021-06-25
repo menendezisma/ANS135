@@ -24,6 +24,7 @@ class Un2:
             metodo = int(input("\x1b[3;36m"+"Ingrese el numero del metodo por el que desea resolver la funcion\n1.Ver grafico\n2.Biseccion\n3.Falsa Posicion\n"
                 "4.Punto fijo\n5.Newton Raphson\n6.Secante\n7.Müller\nOtro numero para salir\n"+"\x1b[1;36m"))
 
+            
             while metodo > 0 and metodo < 8:
                 #Opcion 1 Grafico
                 if metodo == 1:
