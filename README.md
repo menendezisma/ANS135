@@ -13,26 +13,9 @@
 
 Análisis numérico
 
-<br/>
+*Descripcion*
 
-*DOCENTE*
-
-Ing. Xenia Ivette Peñete Godoy
+version 1 del proyecto final de ANS135 que contiene algunos metodos numericos.
 
 <br/>
 
-*INTEGRANTES*
-
-Castro Alarcón,Manuel Alejandro CA16034
-
-Durán Guerra,José Magdiel DG17001
-
-Espadero Miranda,Edgardo Ernesto EM16006
-
-Jiménez Martínez,Kevin Emmanuel JM17015
-
-Menéndez Martínez,Mauricio Israel MM18144
-
-<br/>
-
-__22 DE JUNIO DE 2021__
